@@ -7,6 +7,12 @@ require __DIR__ . '/../autoload.php';
 
 if (isset($_POST['email'], $_POST['password'])) {
     $email = trim($_POST['email']);
+    $password = $_POST['password'];
+
+    if (empty($email) || empty($password)) {
+        $_SESSION['errors'][] = "You need to fill in all fields";
+        redirect('/login.php');
+    }
 
 
     $statement = $database->prepare('SELECT * FROM users WHERE email = :email');
@@ -18,16 +24,23 @@ if (isset($_POST['email'], $_POST['password'])) {
 
 
     if (!$user) {
+        $_SESSION['errors'][] = "That email does not belong to any account.";
         redirect('/login.php');
     }
 
-    if (password_verify($_POST['password'], $user['password'])) {
+    if (isset($user['password']) && password_verify($password, $user['password'])) {
 
-        unset($user['password']);
-
-        $_SESSION['user'] = $user;
+        $_SESSION['user'] = [
+            'email' => $user['email'],
+            'username' => $user['username'],
+            'id' => $user['id'],
+            'avatar' => $user['avatar']
+        ];
+        redirect('/');
     }
+    $_SESSION['errors'][] = "The email or password is wrong";
+    redirect('/login.php');
 }
 
 
-redirect('/');
+redirect('/login.php');

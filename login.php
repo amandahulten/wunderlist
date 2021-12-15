@@ -5,6 +5,15 @@
 <article>
     <h1>Login</h1>
 
+    <?php if (isset($_SESSION['errors'])) : ?>
+        <?php foreach ($_SESSION['errors'] as $error) : ?>
+            <div class="error">
+                <?php echo $error; ?>
+            </div>
+        <?php endforeach; ?>
+        <?php unset($_SESSION['errors']) ?>
+    <?php endif; ?>
+
     <form action="app/users/login.php" method="post">
         <div class="">
             <label for="email">Email</label>

@@ -1,1 +1,5 @@
-/* In this file you can add your custom styles. */
+.profile-picture {
+  height: auto;
+  max-width: 200px;
+  width: 50vw;
+}

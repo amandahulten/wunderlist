@@ -4,50 +4,62 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-$username = "";
-$email = "";
-$errors = [];
 
-if (isset($_POST['reg_user'])) {
-    $email = $_POST['email'];
-    $password = $_POST['password'];
-    $passwordRep = $_POST['passwordRep'];
+if (isset($_POST['email'], $_POST['password'], $_POST['username'])) {
+    $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
 
-    if (empty($email)) {
-        array_push($errors, "Username is required");
+    $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+
+    $username = trim(filter_var($_POST['username'], FILTER_SANITIZE_STRING));
+
+    if (empty($email) || empty($password) || empty($username)) {
+        $_SESSION['errors'][] = "You need to fill in all fields.";
+        redirect('/register.php');
     }
 
-    if (empty($password)) {
-        array_push($errors, "Password is required");
+    $statement = $database->prepare('SELECT * FROM users WHERE email = :email');
+    $statement->bindParam(':email', $email, PDO::PARAM_STR);
+    $statement->execute();
+    $compareEmail = $statement->fetch(PDO::FETCH_ASSOC);
+    if ($compareEmail['email'] && $compareEmail === $email) {
+        $_SESSION['errors'][] = "This email aldready exists, try another one.";
+        redirect('/register.php');
     }
 
-    if ($password != $passwordRep) {
-        array_push($errors, "The two passwords do not match");
+    $statement = $database->prepare('SELECT * FROM users WHERE username = :username');
+    $statement->bindParam(':username', $username, PDO::PARAM_STR);
+    $statement->execute();
+    $compareUsername = $statement->fetch(PDO::FETCH_ASSOC);
+    if ($compareUsername['username'] && $compareUsername === $username) {
+        $_SESSION['errors'][] = "This username already exist, try another one.";
+        redirect('/register.php');
     }
 
-    $user_check = $database->prepare("SELECT * FROM users WHERE email = '$email' LIMIT 1");
-    $user_check->bindParam(':email', $email, PDO::PARAM_STR);
+
+    $query = "INSERT INTO users (email, password, username) VALUES (:email, :password, :username)";
+    $statement = $database->prepare($query);
+    $statement->bindParam(':email', $email, PDO::PARAM_STR);
+    $statement->bindParam(':password', $password, PDO::PARAM_STR);
+    $statement->bindParam(':username', $username, PDO::PARAM_STR);
+    $statement->execute();
+
+    $statement = $database->prepare('SELECT * FROM users WHERE username = :username');
+    $statement->bindParam(':username', $username, PDO::PARAM_STR);
+    $statement->execute();
+
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
 
 
-    $result = $user_check->fetch(PDO::FETCH_OBJ);
+    $_SESSION['user'] = [
+        'email' => $user['email'],
+        'username' => $user['username']
+    ];
 
-
-    // $result->query($database, $user_check);
-    // $user = $result->fetch(PDO::FETCH_ASSOC);
-
-    if (empty($result)) {
-        $query = $database->prepare("INSERT INTO users (email, password) VALUES('$email', '$password')");
-
-        $query->execute();
-        redirect('/login.php');
-    }
-
-    // if (count($errors) == 0) {
-    //     $passwordSecure = md5($password);
-
-    //     $statement = $database->prepare("INSERT INTO users (email, password) VALUES('?, ?')");
-    // }
+    redirect('../../index.php');
 }
+
+redirect('../../register.php');
+
 
 
 
