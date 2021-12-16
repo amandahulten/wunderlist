@@ -10,8 +10,8 @@ if (isset($_FILES['avatar'])) {
 
 
     $uploadPath = __DIR__ . '/../../uploads/';
-    $desination = $uploadPath . $avatarName;
-    move_uploaded_file($avatar['tmp_name'], $desination);
+    $destination = $uploadPath . $avatarName;
+    move_uploaded_file($avatar['tmp_name'], $destination);
 
     if (!in_array($avatar['type'], ['image/jpeg', 'image/png'])) {
         $_SESSION['errors'][] = "The uploaded file type is not allowed.";

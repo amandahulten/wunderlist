@@ -17,20 +17,20 @@ if (isset($_POST['email'], $_POST['password'], $_POST['username'])) {
         redirect('/register.php');
     }
 
-    $statement = $database->prepare('SELECT * FROM users WHERE email = :email');
+    $statement = $database->prepare('SELECT email FROM users WHERE email = :email');
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->execute();
     $compareEmail = $statement->fetch(PDO::FETCH_ASSOC);
-    if ($compareEmail['email'] && $compareEmail === $email) {
+    if ($compareEmail !== false) {
         $_SESSION['errors'][] = "This email aldready exists, try another one.";
         redirect('/register.php');
     }
 
-    $statement = $database->prepare('SELECT * FROM users WHERE username = :username');
+    $statement = $database->prepare('SELECT username FROM users WHERE username = :username');
     $statement->bindParam(':username', $username, PDO::PARAM_STR);
     $statement->execute();
     $compareUsername = $statement->fetch(PDO::FETCH_ASSOC);
-    if ($compareUsername['username'] && $compareUsername === $username) {
+    if ($compareUsername !== false) {
         $_SESSION['errors'][] = "This username already exist, try another one.";
         redirect('/register.php');
     }
@@ -52,13 +52,14 @@ if (isset($_POST['email'], $_POST['password'], $_POST['username'])) {
 
     $_SESSION['user'] = [
         'email' => $user['email'],
-        'username' => $user['username']
+        'username' => $user['username'],
+        'id' => $user['id']
     ];
 
-    redirect('../../index.php');
+    redirect('/');
 }
 
-redirect('../../register.php');
+redirect('/register.php');
 
 
 

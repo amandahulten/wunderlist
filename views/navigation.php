@@ -1,13 +1,9 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#"><?php echo $config['title']; ?></a>
+<nav>
+    <div><?php echo $config['title']; ?></div>
 
     <ul class="navbar-nav">
         <li class="nav-item">
             <a class="nav-link" href="/../index.php">Home</a>
-        </li>
-
-        <li class="nav-item">
-            <a class="nav-link" href="/../about.php">About</a>
         </li>
 
         <?php if (isset($_SESSION['user'])) : ?>
