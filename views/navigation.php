@@ -6,14 +6,14 @@
             <a class="nav-link" href="/../index.php">Home</a>
         </li>
 
-        <?php if (isset($_SESSION['user'])) : ?>
+        <?php if (isUserLoggedIn()) : ?>
             <li class="nav-item">
                 <a class="nav-link" href="/../profile.php">Profile</a>
             </li>
         <?php endif; ?>
 
         <li class="nav-item">
-            <?php if (isset($_SESSION['user'])) : ?>
+            <?php if (isUserLoggedIn()) : ?>
                 <a class="nav-link" href="/app/users/logout.php">Logout</a>
             <?php endif; ?>
         </li>

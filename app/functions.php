@@ -18,3 +18,9 @@ function getAllTasks($id, $database): array
     $allTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $allTasks;
 }
+
+function isUserLoggedIn()
+{
+    $loggedIn = isset($_SESSION['user']);
+    return $loggedIn;
+}

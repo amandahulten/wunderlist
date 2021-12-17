@@ -7,16 +7,26 @@ require __DIR__ . '/views/header.php';
 
 
 
-<article>
+<article class="homepage">
     <h1>To do</h1>
+    <hr style="width: 100%;">
 
-    <?php if (!isset($_SESSION['user'])) : ?>
+    <?php if (isset($_SESSION['errors'])) : ?>
+        <?php foreach ($_SESSION['errors'] as $error) : ?>
+            <div class="error">
+                <?php echo $error; ?>
+            </div>
+        <?php endforeach; ?>
+        <?php unset($_SESSION['errors']) ?>
+    <?php endif; ?>
+
+    <?php if (!isUserLoggedIn()) : ?>
         <p>Welcome to stress less! This is your website for a more structured life. Start by either <button><a href="/login.php">Login</a></button> or <button><a href="/register.php">Register</a></button>.</p>
     <?php endif; ?>
 
 
 
-    <?php if (isset($_SESSION['user'])) : ?>
+    <?php if (isUserLoggedIn()) : ?>
         <?php if (!getAllTasks($_SESSION['user']['id'], $database)) : ?>
             <h2>Wihoo, you're free!! </h2>
         <?php else : ?>
@@ -33,9 +43,12 @@ require __DIR__ . '/views/header.php';
                     <td> <label for="completed">
                             <input type="checkbox" name="completed" class="check" id="completed"></label>
                     </td>
-                    <td><?php echo $task['title']; ?></h2>
-                    <td><?php echo $task['description']; ?></p>
+                    <td class="title-column"><?php echo $task['title']; ?></h2>
+                    <td class="description-column"><?php echo $task['description']; ?></p>
                     <td><?php echo $task['completed_by']; ?></h3>
+                    <td><button class="btn"><a href="/change-task.php"></a>Edit</button>
+                        <button class="btn">Delete</button>
+                    </td>
                 </tr>
             <?php endforeach; ?>
             </table>
@@ -44,10 +57,12 @@ require __DIR__ . '/views/header.php';
                 <h2>Add new task</h2>
                 <form action="/app/posts/store.php" method="post">
                     <label for="title">Title:</label>
-                    <input type="text" name="title" id="title">
+                    <input type="text" name="title" id="title" maxlength="25">
 
                     <label for="description">Description:</label>
-                    <textarea name="description" id="description" cols="30" rows="10"></textarea>
+                    <textarea name="description" id="description" maxlength="30"></textarea>
+                    <small>Max 30 characters</small>
+                    <br>
 
                     <label for="deadline">Deadline:</label>
                     <input type="date" name="deadline" id="deadline">

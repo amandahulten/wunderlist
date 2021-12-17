@@ -37,11 +37,20 @@ a {
   text-decoration: none;
 }
 
+/* Homepage */
+.homepage,
+.add-task-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* Profile */
 
 .profile,
 .login,
-.register {
+.register,
+.homepage {
   margin: 16px 20% 0 20%;
   display: flex;
   gap: 16px;
@@ -73,9 +82,9 @@ input[type='text'] {
 
 .btn {
   border: none;
-  padding: 8px 16px;
+  padding: 8px 8px;
   text-decoration: none;
-  margin: 0;
+  margin: 5px;
 }
 
 .change-password-container {
@@ -109,4 +118,24 @@ input[type='text'] {
 .check:hover {
   cursor: pointer;
   opacity: 0.6;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+td {
+  border: 1px solid black;
+}
+
+textarea {
+  resize: none;
+  width: 100%;
+  height: 50px;
+}
+
+.description-column,
+.title-column {
+  max-width: 50px;
+  word-wrap: break-word;
 }
