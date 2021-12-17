@@ -38,6 +38,7 @@ require __DIR__ . '/views/header.php';
                     <th>Deadline</th>
                 </tr>
             <?php endif; ?>
+
             <?php foreach (getAllTasks($_SESSION['user']['id'], $database) as $task) : ?>
                 <tr>
                     <td> <label for="completed">
@@ -70,6 +71,7 @@ require __DIR__ . '/views/header.php';
                     <button class="btn">Add task</button>
                 </form>
             </div>
+
         <?php endif; ?>
 
 </article>
