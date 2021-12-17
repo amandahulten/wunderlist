@@ -12,6 +12,8 @@ if (isset($_POST['email'], $_POST['password'], $_POST['username'])) {
 
     $username = trim(filter_var($_POST['username'], FILTER_SANITIZE_STRING));
 
+    $placeholderImg = '../../uploads/placeholder.png';
+
     if (empty($email) || empty($password) || empty($username)) {
         $_SESSION['errors'][] = "You need to fill in all fields.";
         redirect('/register.php');
@@ -36,11 +38,12 @@ if (isset($_POST['email'], $_POST['password'], $_POST['username'])) {
     }
 
 
-    $query = "INSERT INTO users (email, password, username) VALUES (:email, :password, :username)";
+    $query = "INSERT INTO users (email, password, username, avatar) VALUES (:email, :password, :username, :avatar)";
     $statement = $database->prepare($query);
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->bindParam(':password', $password, PDO::PARAM_STR);
     $statement->bindParam(':username', $username, PDO::PARAM_STR);
+    $statement->bindParam(':avatar', $placeholderImg, PDO::PARAM_STR);
     $statement->execute();
 
     $statement = $database->prepare('SELECT * FROM users WHERE username = :username');
@@ -53,7 +56,8 @@ if (isset($_POST['email'], $_POST['password'], $_POST['username'])) {
     $_SESSION['user'] = [
         'email' => $user['email'],
         'username' => $user['username'],
-        'id' => $user['id']
+        'id' => $user['id'],
+        'avatar' => $user['avatar']
     ];
 
     redirect('/');

@@ -21,7 +21,7 @@
 
         <form class="profile-form" action="/app/users/create-avatar.php" method="post" enctype="multipart/form-data">
             <div class="profile-upload">
-                <label for="avatar">Add or change profile picture:</label>
+                <label for="avatar">Change profile picture:</label>
                 <input type="file" name="avatar" id="avatar" accept=".jpeg, .png" required>
             </div>
             <button class="btn upload">Upload</button>
