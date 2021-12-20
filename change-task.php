@@ -1,4 +1,5 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
+<?php require __DIR__ . '/views/header.php'; ?>
 
 
 <div class="change-task-container">
@@ -14,6 +15,7 @@
         <input type="date" name="new-deadline" id="new-deadline">
 
         <button class="btn">Change</button>
+        <button class="btn"><a href="/index.php">Cancel</a></button>
     </form>
 </div>
 

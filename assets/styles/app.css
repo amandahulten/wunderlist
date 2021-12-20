@@ -45,12 +45,19 @@ a {
   align-items: center;
 }
 
+.task-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
 /* Profile */
 
 .profile,
 .login,
 .register,
-.homepage {
+.homepage,
+.change-task-container {
   margin: 16px 20% 0 20%;
   display: flex;
   gap: 16px;

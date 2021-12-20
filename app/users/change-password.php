@@ -41,6 +41,6 @@ if (isset($_POST['current-password'], $_POST['new-password'])) {
 
     redirect('/');
 }
-die(var_dump($newPassword));
+
 
 redirect('/profile.php');
