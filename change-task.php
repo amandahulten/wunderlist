@@ -5,6 +5,7 @@
 <div class="change-task-container">
     <h2>Change task</h2>
     <form action="/app/posts/update.php" method="post">
+
         <label for="new-title">New title:</label>
         <input type="text" name="new-title" id="new-title">
 

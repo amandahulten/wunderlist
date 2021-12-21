@@ -10,7 +10,7 @@ if (isset($_POST['title'], $_POST['description'], $_POST['deadline'])) {
     $deadline = $_POST['deadline'];
     $userId = $_SESSION['user']['id'];
 
-    if (empty($title) || empty($description) || empty($deadline)) {
+    if (empty($title) || empty($deadline)) {
         $_SESSION['errors'][] = "You need to fill in all fields";
         redirect('/');
     }

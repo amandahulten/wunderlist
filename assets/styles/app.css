@@ -11,7 +11,7 @@ nav {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  background-color: antiquewhite;
+  background-color: #f6f3ef;
   align-items: center;
   height: 50px;
 }
@@ -46,9 +46,28 @@ a {
 }
 
 .task-container {
+  width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-color: #bebebe;
+  border-radius: 5px;
+  padding: 8px;
+}
+
+.task-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.task-completed {
+  background-color: green;
+}
+
+.task-uncompleted {
+  background-color: red;
 }
 
 /* Profile */
@@ -74,7 +93,7 @@ a {
   transform: scale(1);
   object-fit: cover;
   width: 100%;
-  min-height: 300px;
+  height: 100%;
   margin: 0 0 16px 0;
 }
 

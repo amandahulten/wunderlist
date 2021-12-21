@@ -19,7 +19,7 @@ function getAllTasks($id, $database): array
     return $allTasks;
 }
 
-function isUserLoggedIn()
+function isUserLoggedIn(): bool
 {
     $loggedIn = isset($_SESSION['user']);
     return $loggedIn;
