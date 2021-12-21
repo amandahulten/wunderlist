@@ -12,7 +12,7 @@ if (isset($_POST['email'], $_POST['password'], $_POST['username'])) {
 
     $username = trim(filter_var($_POST['username'], FILTER_SANITIZE_STRING));
 
-    $placeholderImg = '../../uploads/placeholder.png';
+    // $placeholderImg = '../../uploads/placeholder.png';
 
     if (empty($email) || empty($password) || empty($username)) {
         $_SESSION['errors'][] = "You need to fill in all fields.";
@@ -38,12 +38,11 @@ if (isset($_POST['email'], $_POST['password'], $_POST['username'])) {
     }
 
 
-    $query = "INSERT INTO users (email, password, username, avatar) VALUES (:email, :password, :username, :avatar)";
+    $query = "INSERT INTO users (email, password, username) VALUES (:email, :password, :username)";
     $statement = $database->prepare($query);
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->bindParam(':password', $password, PDO::PARAM_STR);
     $statement->bindParam(':username', $username, PDO::PARAM_STR);
-    $statement->bindParam(':avatar', $placeholderImg, PDO::PARAM_STR);
     $statement->execute();
 
     $statement = $database->prepare('SELECT * FROM users WHERE username = :username');
@@ -64,53 +63,3 @@ if (isset($_POST['email'], $_POST['password'], $_POST['username'])) {
 }
 
 redirect('/register.php');
-
-
-
-
-// $email = $_POST['email'];
-// $password = $_POST['password'];
-// // $passwordRep = $_POST['passwordRep'];
-
-
-// $statement = $database->prepare(('INSERT INTO users(email, password) VALUES(?, ?)'));
-
-// $statement->bindParam($email, $password, PDO::PARAM_STR);
-// $statement->execute();
-// echo "Registration Sucess";
-
-
-// if (isset($_POST['submit'])) {
-
-//     // $name = $_POST['name'];
-//     $email = $_POST['email'];
-//     $password = $_POST['password'];
-//     $passwordrep = $_POST['passwordrep'];
-
-//     require_once 'functions.php';
-
-//     if (emptyInputSignup($email, $password, $passwordrep) !== false) {
-//         header("location: ../../register.php?error=emptyinput");
-//         exit();
-//     }
-
-//     if (invalidEmail($email) !== false) {
-//         header("location: ../../register.php?error=invalidemail");
-//         exit();
-//     }
-
-//     if (passwordMatch($password, $passwordrep) !== false) {
-//         header("location: ../../register.php?error=passworddifferent");
-//         exit();
-//     }
-
-//     if (correctPassword($password) !== false) {
-//         header("location: ../../register.php?error=correctPassword");
-//         exit();
-//     }
-
-//     createUser($connection, $email, $password, $passwordrep);
-// } else {
-//     header("location: ../../register.php");
-//     exit();
-// }

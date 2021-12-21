@@ -4,18 +4,12 @@ declare(strict_types=1);
 
 require __DIR__ . '/../autoload.php';
 
-if (isset($_POST['current-email'], $_POST['new-email'])) {
-    $currentEmail = trim(filter_var($_POST['current-email'], FILTER_SANITIZE_EMAIL));
+if (isset($_POST['new-email'])) {
     $newEmail = trim(filter_var($_POST['new-email'], FILTER_SANITIZE_EMAIL));
     $id = $_SESSION['user']['id'];
 
-    if (empty($currentEmail) || empty($newEmail)) {
+    if (empty($newEmail)) {
         $_SESSION['errors'][] = "You need to fill in all fields";
-        redirect('/profile.php');
-    }
-
-    if ($currentEmail !== $_SESSION['user']['email']) {
-        $_SESSION['errors'][] = "Your current email is incorrect";
         redirect('/profile.php');
     }
 

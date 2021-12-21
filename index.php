@@ -41,7 +41,6 @@ require __DIR__ . '/views/header.php';
                 <h3><?php echo $task['completed_by']; ?></h3>
                 <form action="/app/posts/delete.php" method="post">
                     <input type="hidden" name="task-id" id="task-id" value="<?php echo $task['id']; ?>">
-                    <input type="hidden" name="user-id" id="user-id" value="<?php echo $task['user_id']; ?>">
                     <button type="submit" class="btn">Delete</button>
                 </form>
                 <button><a href="/change-task.php">Edit task</a></button>
