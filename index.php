@@ -2,16 +2,12 @@
 require __DIR__ . '/app/autoload.php';
 require __DIR__ . '/views/header.php';
 
-$todaysDate = ("SELECT * FROM tasks WHERE completed_by >= CURRENT_DATE()");
+// $todaysDate = ("SELECT * FROM tasks WHERE completed_by >= CURRENT_DATE()");
 
 ?>
 
-
-
-
+<!-- ändra alla echo -->
 <article class="homepage">
-
-    <hr style="width: 100%;">
 
     <?php if (isset($_SESSION['errors'])) : ?>
         <?php foreach ($_SESSION['errors'] as $error) : ?>
@@ -27,7 +23,11 @@ $todaysDate = ("SELECT * FROM tasks WHERE completed_by >= CURRENT_DATE()");
     <?php endif; ?>
 
 
-
+    <?php if (!getAllLists($database)) : ?>
+        <h1>Create a list to start</h1>
+    <?php else : ?>
+        <h1>Lists</h1>
+    <?php endif; ?>
 
     <?php if (isUserLoggedIn()) : ?>
 
@@ -41,7 +41,7 @@ $todaysDate = ("SELECT * FROM tasks WHERE completed_by >= CURRENT_DATE()");
                             <input type="hidden" name="list-id" id="list-id" value="<?php echo $list['id']; ?>">
                             <button type="submit" class="btn">Delete</button>
                         </form>
-                        <button class="btn"><a href="/change-task.php">Edit</a></button>
+                        <button class="btn"><a href="/change-list.php?id=<?= $list['id'] ?>">Edit</a></button>
 
                     </div>
                 </ul>

@@ -1,10 +1,14 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
 <?php require __DIR__ . '/views/header.php'; ?>
 
+<?php
+$listId = $_GET['id'];
+$taskId = $_GET['task_id'];
+?>
 
 <div class="change-task-container">
     <h2>Change task</h2>
-    <form action="/app/posts/update.php" method="post">
+    <form action="/app/posts/update-task.php?id=<?= $listId ?>&task_id=<?= $taskId ?>" method="post">
 
         <label for="new-title">New title:</label>
         <input type="text" name="new-title" id="new-title">

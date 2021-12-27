@@ -5,14 +5,16 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 
-if (isset($_POST['task-id'])) {
+if (isset($_POST['task-id'], $_POST['list-id'])) {
     $taskId = $_POST['task-id'];
+    $listId = $_POST['list-id'];
 
-    $statement = $database->prepare("DELETE FROM tasks WHERE id = :id");
+    $statement = $database->prepare("DELETE FROM tasks WHERE id = :id AND list_id = :list_id");
     $statement->bindParam(':id', $taskId, PDO::PARAM_INT);
+    $statement->bindParam(':list_id', $listId, PDO::PARAM_INT);
     $statement->execute();
 
-    redirect('/individual-list.php');
+    redirect('/individual-list.php?id=' . $listId);
 }
 
 if (isset($_POST['list-id'])) {
