@@ -10,7 +10,7 @@ $todaysDate = ("SELECT * FROM tasks WHERE completed_by >= CURRENT_DATE()");
 
 
 <article class="homepage">
-    <h1>To do</h1>
+
     <hr style="width: 100%;">
 
     <?php if (isset($_SESSION['errors'])) : ?>
@@ -30,51 +30,33 @@ $todaysDate = ("SELECT * FROM tasks WHERE completed_by >= CURRENT_DATE()");
 
 
     <?php if (isUserLoggedIn()) : ?>
-        <?php if (!getAllTasks($_SESSION['user']['id'], $database)) : ?>
-            <h2>Wihoo, you're free!! </h2>
 
-        <?php endif; ?>
+        <?php foreach (getAllLists($database) as $list) : ?>
+            <div class="list-container">
+                <ul>
+                    <li><a href="/individual-list.php?id=<?= $list['id']; ?>"><?php echo $list['title']; ?></a></li>
 
-        <?php foreach (getAllTasks($_SESSION['user']['id'], $database) as $task) : ?>
-            <div class="task-container">
-                <h2><?php echo $task['title']; ?></h2>
-                <p><?php echo $task['description']; ?></p>
-                <h3>Deadline: <?php echo $task['completed_by']; ?></h3>
-                <div class="task-buttons">
-                    <form action="/app/posts/delete.php" method="post">
-                        <input type="hidden" name="task-id" id="task-id" value="<?php echo $task['id']; ?>">
-                        <button type="submit" class="btn">Delete task</button>
-                    </form>
-                    <button class="btn"><a href="/change-task.php">Edit task</a></button>
-                    <button class="btn completed">Completed</button>
-                    <button class="btn uncompleted">Uncompleted</button>
-                </div>
+                    <div class="task-buttons">
+                        <form action="/app/posts/delete.php" method="post">
+                            <input type="hidden" name="list-id" id="list-id" value="<?php echo $list['id']; ?>">
+                            <button type="submit" class="btn">Delete</button>
+                        </form>
+                        <button class="btn"><a href="/change-task.php">Edit</a></button>
+
+                    </div>
+                </ul>
             </div>
         <?php endforeach; ?>
 
-        <!-- <form action="/app/posts/tasks-today.php" action="post">
+        <div class="add-list-container">
+            <h2>Add new list</h2>
+            <form action="/app/posts/create-list.php" method="post">
+                <label for="list-name">List name:</label>
+                <input type="text" name="list-name" id="list-name" maxlength="20">
 
-            <button type="submit" class="btn" name="today">Show only today's tasks</button>
-        </form> -->
-
-        <div class="add-task-container">
-            <h2>Add new task</h2>
-            <form action="/app/posts/store.php" method="post">
-                <label for="title">Title:</label>
-                <input type="text" name="title" id="title" maxlength="20">
-
-                <label for="description">Description:</label>
-                <textarea name="description" id="description" maxlength="30"></textarea>
-                <small>Max 30 characters</small>
-                <br>
-
-                <label for="deadline">Deadline:</label>
-                <input type="date" name="deadline" id="deadline">
-
-                <button class="btn">Add task</button>
+                <button class="btn">Add list</button>
             </form>
         </div>
-
     <?php endif; ?>
 
 </article>

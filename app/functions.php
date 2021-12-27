@@ -9,9 +9,23 @@ function redirect(string $path)
 }
 
 
-function getAllTasks($id, $database): array
+function getAllTasks($database): array
 {
+    $id = $_SESSION['user']['id'];
+
     $statement = $database->query('SELECT * FROM tasks WHERE user_id = :user_id');
+    $statement->bindParam(':user_id', $id, PDO::PARAM_INT);
+    $statement->execute();
+
+    $allTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $allTasks;
+}
+
+function getAllLists($database): array
+{
+    $id = $_SESSION['user']['id'];
+
+    $statement = $database->query('SELECT * FROM lists WHERE user_id = :user_id');
     $statement->bindParam(':user_id', $id, PDO::PARAM_INT);
     $statement->execute();
 
