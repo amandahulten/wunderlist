@@ -12,7 +12,7 @@ if (isset($_POST['title'], $_POST['description'], $_POST['deadline'])) {
     $description = trim(filter_var($_POST['description']));
     $deadline = $_POST['deadline'];
     $userId = $_SESSION['user']['id'];
-    $createdAt = date('Y.m.d');
+    $createdAt = date('Y-m-d');
 
     if (empty($title) || empty($deadline)) {
         $_SESSION['errors'][] = "You need to fill in all fields";
@@ -26,7 +26,7 @@ if (isset($_POST['title'], $_POST['description'], $_POST['deadline'])) {
     $statement->bindParam(':title', $title, PDO::PARAM_STR);
     $statement->bindParam(':description', $description, PDO::PARAM_STR);
     $statement->bindParam(':completed_by', $deadline, PDO::PARAM_STR);
-    $statement->bindParam(':created_at', $createdAt, PDO::PARAM_INT);
+    $statement->bindParam(':created_at', $createdAt, PDO::PARAM_STR);
     $statement->execute();
 }
 

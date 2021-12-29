@@ -10,7 +10,7 @@
     <?php if (isset($_SESSION['errors'])) : ?>
         <?php foreach ($_SESSION['errors'] as $error) : ?>
             <div class="error">
-                <?php echo $error; ?>
+                <?= $error; ?>
             </div>
         <?php endforeach; ?>
         <?php unset($_SESSION['errors']) ?>
@@ -18,34 +18,34 @@
 
     <?php foreach (getAllLists($database) as $list) : ?>
         <?php if ($list['id'] == $id) : ?>
-            <h2><?php echo $list['title']; ?></h2>
+            <h2><?= $list['title']; ?></h2>
+            <hr style="width:100%">
         <?php endif; ?>
     <?php endforeach; ?>
 
-    <?php if (!getAllTasks($database)) : ?>
+    <?php if (!getUncompletedTasks($database)) : ?>
         <h2>No tasks here yet </h2>
 
     <?php endif; ?>
 
-    <?php foreach (getAllTasks($database) as $task) : ?>
+    <?php foreach (getUncompletedTasks($database) as $task) : ?>
         <?php if ($task['list_id'] == $id) : ?>
             <div class="task-container">
-                <h2><?php echo $task['title']; ?></h2>
-                <p><?php echo $task['description']; ?></p>
-                <h3>Deadline: <?php echo $task['completed_by']; ?></h3>
+                <h2><?= $task['title']; ?></h2>
+                <p><?= $task['description']; ?></p>
+                <h3>Deadline: <?= $task['completed_by']; ?></h3>
                 <div class="task-buttons">
                     <form action="/app/posts/delete.php" method="post">
-                        <input type="hidden" name="task-id" id="task-id" value="<?php echo $task['id']; ?>">
-                        <input type="hidden" name="list-id" id="list-id" value="<?php echo $task['list_id']; ?>">
+                        <input type="hidden" name="task-id" id="task-id" value="<?= $task['id']; ?>">
+                        <input type="hidden" name="list-id" id="list-id" value="<?= $task['list_id']; ?>">
                         <button type="submit" class="btn">Delete task</button>
                     </form>
                     <button class="btn"><a href="/change-task.php?id=<?= $id; ?>&task_id=<?= $task['id']; ?>">Edit task</a></button>
-                    <!-- <form action="/app/posts/status.php" action="post">
-                        <label for="completed">Completed</label>
-                        <input type="checkbox" name="completed" id="completed">
-                        <label for="uncompleted">Uncompleted</label>
-                        <input type="checkbox" name="uncompleted" id="uncompleted">
-                    </form> -->
+                    <form action="/app/posts/completed.php" action="post">
+                        <input type="hidden" name="task-id" id="task-id" value="<?= $task['id'] ?>">
+                        <input type="hidden" name="list-id" id="list-id" value="<?= $task['list_id']; ?>">
+                        <button type="submit" class="btn">Done</button>
+                    </form>
                 </div>
             </div>
         <?php endif; ?>

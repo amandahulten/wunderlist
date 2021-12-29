@@ -7,7 +7,7 @@
     <?php if (isset($_SESSION['errors'])) : ?>
         <?php foreach ($_SESSION['errors'] as $error) : ?>
             <div class="error">
-                <?php echo $error; ?>
+                <?= $error; ?>
             </div>
         <?php endforeach; ?>
         <?php unset($_SESSION['errors']) ?>
@@ -31,11 +31,6 @@
             <label for="password">Password</label>
             <input class="form-control" type="password" name="password" id="password" required>
         </div>
-
-        <!-- <div class="">
-            <label for="passwordRep">Repeat password</label>
-            <input class="form-control" type="passwordRep" name="passwordRep" id="passwordRep" required>
-        </div> -->
 
         <button type="submit" class="btn" name="reg_user">Register</button>
 

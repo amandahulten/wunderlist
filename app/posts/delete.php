@@ -20,11 +20,13 @@ if (isset($_POST['task-id'], $_POST['list-id'])) {
 if (isset($_POST['list-id'])) {
     $listId = $_POST['list-id'];
 
+    $statement = $database->prepare('DELETE FROM tasks WHERE list_id = :list_id');
+    $statement->bindParam(':list_id', $listId, PDO::PARAM_INT);
+    $statement->execute();
+
     $statement = $database->prepare("DELETE FROM lists WHERE id = :id");
     $statement->bindParam(':id', $listId, PDO::PARAM_INT);
     $statement->execute();
-
-    redirect('/');
 }
 
 redirect('/');

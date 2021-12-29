@@ -6,13 +6,13 @@ require __DIR__ . '/views/header.php';
 
 ?>
 
-<!-- ändra alla echo -->
+
 <article class="homepage">
 
     <?php if (isset($_SESSION['errors'])) : ?>
         <?php foreach ($_SESSION['errors'] as $error) : ?>
             <div class="error">
-                <?php echo $error; ?>
+                <?= $error; ?>
             </div>
         <?php endforeach; ?>
         <?php unset($_SESSION['errors']) ?>
@@ -23,22 +23,24 @@ require __DIR__ . '/views/header.php';
     <?php endif; ?>
 
 
-    <?php if (!getAllLists($database)) : ?>
-        <h1>Create a list to start</h1>
-    <?php else : ?>
-        <h1>Lists</h1>
-    <?php endif; ?>
+
 
     <?php if (isUserLoggedIn()) : ?>
+
+        <?php if (!getAllLists($database)) : ?>
+            <h1>Create a list to start</h1>
+        <?php else : ?>
+            <h1>Lists</h1>
+        <?php endif; ?>
 
         <?php foreach (getAllLists($database) as $list) : ?>
             <div class="list-container">
                 <ul>
-                    <li><a href="/individual-list.php?id=<?= $list['id']; ?>"><?php echo $list['title']; ?></a></li>
+                    <li> <a href="/individual-list.php?id=<?= $list['id']; ?>"><?= $list['title']; ?></a></li>
 
                     <div class="task-buttons">
                         <form action="/app/posts/delete.php" method="post">
-                            <input type="hidden" name="list-id" id="list-id" value="<?php echo $list['id']; ?>">
+                            <input type="hidden" name="list-id" id="list-id" value="<?= $list['id']; ?>">
                             <button type="submit" class="btn">Delete</button>
                         </form>
                         <button class="btn"><a href="/change-list.php?id=<?= $list['id'] ?>">Edit</a></button>
@@ -57,7 +59,22 @@ require __DIR__ . '/views/header.php';
                 <button class="btn">Add list</button>
             </form>
         </div>
+
+
+        <button class="btn task">View all tasks</button>
+
+        <div class="all-tasks">
+            <?php foreach (getUncompletedTasks($database) as $task) : ?>
+                <div class="all-tasks-container">
+                    <h2><?= $task['title']; ?></h2>
+                    <p><?= $task['description']; ?></p>
+                    <h3>Deadline: <?= $task['completed_by']; ?></h3>
+                </div>
+            <?php endforeach; ?>
+        </div>
     <?php endif; ?>
+
+
 
 </article>
 

@@ -8,7 +8,7 @@
     <?php if (isset($_SESSION['errors'])) : ?>
         <?php foreach ($_SESSION['errors'] as $error) : ?>
             <div class="error">
-                <?php echo $error; ?>
+                <?= $error; ?>
             </div>
         <?php endforeach; ?>
         <?php unset($_SESSION['errors']) ?>

@@ -9,7 +9,7 @@
     <?php if (isset($_SESSION['errors'])) : ?>
         <?php foreach ($_SESSION['errors'] as $error) : ?>
             <div class="error">
-                <?php echo $error; ?>
+                <?= $error; ?>
             </div>
         <?php endforeach; ?>
         <?php unset($_SESSION['errors']) ?>
@@ -17,7 +17,7 @@
 
     <?php if ($_SESSION['user']['avatar'] !== null) : ?>
         <div class="profile-picture-container">
-            <img src="/uploads/<?php echo $_SESSION['user']['avatar']; ?>" alt="A placeholder image when not modified and your profil picture when adding a picture below.">
+            <img src="/uploads/<?= $_SESSION['user']['avatar']; ?>" alt="A placeholder image when not modified and your profil picture when adding a picture below.">
         <?php else : ?>
             <div class="profile-picture-container">
                 <img src="/uploads/placeholder.png" alt="Placeholder-image">
