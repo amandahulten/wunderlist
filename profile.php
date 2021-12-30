@@ -4,6 +4,7 @@
 <section class="profile">
 
     <h1>Profile</h1>
+    <hr style="width:100%">
 
 
     <?php if (isset($_SESSION['errors'])) : ?>
@@ -15,16 +16,19 @@
         <?php unset($_SESSION['errors']) ?>
     <?php endif; ?>
 
-    <?php if ($_SESSION['user']['avatar'] !== null) : ?>
-        <div class="profile-picture-container">
-            <img src="/uploads/<?= $_SESSION['user']['avatar']; ?>" alt="A placeholder image when not modified and your profil picture when adding a picture below.">
+    <div class="profile-picture-flex">
+        <?php if ($_SESSION['user']['avatar'] !== null) : ?>
+            <div class="profile-picture-container">
+                <img src="/uploads/<?= $_SESSION['user']['avatar']; ?>" alt="A placeholder image when not modified and your profil picture when adding a picture below.">
+            </div>
         <?php else : ?>
             <div class="profile-picture-container">
                 <img src="/uploads/placeholder.png" alt="Placeholder-image">
             </div>
         <?php endif; ?>
+    </div>
 
-
+    <div class="form-upload-container">
         <form class="profile-form" action="/app/users/create-avatar.php" method="post" enctype="multipart/form-data">
             <div class="profile-upload">
                 <label for="avatar">Change profile picture:</label>
@@ -32,33 +36,33 @@
             </div>
             <button class="btn upload">Upload</button>
         </form>
-        </div>
-        <hr>
+    </div>
+    <hr>
 
-        <div class="change-email-container">
-            <h2>Change email</h2>
-            <form action="/app/users/change-email.php" method="post">
+    <div class="change-email-container">
+        <h2>Change email</h2>
+        <form action="/app/users/change-email.php" method="post">
 
-                <label for="new-email">New email:</label>
-                <input type="email" name="new-email" id="new-email">
+            <label for="new-email">New email:</label>
+            <input type="email" name="new-email" id="new-email">
 
-                <button class="btn profile">Submit</button>
-            </form>
-        </div>
-        <hr>
+            <button class="btn profile">Submit</button>
+        </form>
+    </div>
+    <hr>
 
-        <div class="change-password-container">
-            <h2>Change password</h2>
-            <form action="/app/users/change-password.php" method="post">
-                <label for="current-password">Current password:</label>
-                <input type="password" name="current-password" id="current-password">
+    <div class="change-password-container">
+        <h2>Change password</h2>
+        <form action="/app/users/change-password.php" method="post">
+            <label for="current-password">Current password:</label>
+            <input type="password" name="current-password" id="current-password">
 
-                <label for="new-password">New password:</label>
-                <input type="password" name="new-password" id="new-password">
+            <label for="new-password">New password:</label>
+            <input type="password" name="new-password" id="new-password">
 
-                <button class="btn profile">Submit</button>
-            </form>
-        </div>
+            <button class="btn profile">Submit</button>
+        </form>
+    </div>
 </section>
 
 <?php require __DIR__ . '/views/footer.php'; ?>

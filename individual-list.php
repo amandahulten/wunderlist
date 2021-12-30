@@ -4,9 +4,6 @@
 <?php $id = $_GET['id']; ?>
 
 <article class="list">
-
-    <h1>To do</h1>
-
     <?php if (isset($_SESSION['errors'])) : ?>
         <?php foreach ($_SESSION['errors'] as $error) : ?>
             <div class="error">
@@ -18,7 +15,7 @@
 
     <?php foreach (getAllLists($database) as $list) : ?>
         <?php if ($list['id'] == $id) : ?>
-            <h2><?= $list['title']; ?></h2>
+            <h1><?= $list['title']; ?></h1>
             <hr style="width:100%">
         <?php endif; ?>
     <?php endforeach; ?>

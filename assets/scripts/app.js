@@ -12,12 +12,25 @@
 //   }
 // });
 
-const taskContainers = document.querySelectorAll('.all-tasks');
-const allTaskButton = document.querySelector('.task');
+// View tasks dued today
+
+const todaysTaskContainers = document.querySelectorAll('.todays-tasks-loop');
+const todaysTaskBtn = document.querySelector('.today');
+
+todaysTaskContainers.forEach((todaysTaskContainer) => {
+  todaysTaskBtn.addEventListener('click', () => {
+    todaysTaskContainer.classList.toggle('active');
+  });
+  console.log(todaysTaskContainer);
+});
+
+// View all tasks
+
+const taskContainers = document.querySelectorAll('.all-tasks-loop');
+const allTaskBtn = document.querySelector('.task');
 
 taskContainers.forEach((taskContainer) => {
-  allTaskButton.addEventListener('click', () => {
+  allTaskBtn.addEventListener('click', () => {
     taskContainer.classList.toggle('active');
   });
-  console.log(taskContainer);
 });

@@ -1,5 +1,5 @@
 <nav>
-    <div><?php echo $config['title']; ?></div>
+    <div class="title"><?php echo $config['title']; ?></div>
 
     <ul class="navbar-nav">
         <li class="nav-item">

@@ -8,6 +8,12 @@ function redirect(string $path)
     exit;
 }
 
+function isUserLoggedIn(): bool
+{
+    $loggedIn = isset($_SESSION['user']);
+    return $loggedIn;
+}
+
 
 function getUncompletedTasks($database): array
 {
@@ -34,6 +40,21 @@ function getCompletedTasks($database): array
     return $allTasks;
 }
 
+function getTodaysTasks($database): array
+{
+
+    $id = $_SESSION['user']['id'];
+    // $todaysDate = date('Y-m-d');
+
+    $statement = $database->query('SELECT * FROM tasks WHERE completed_by = DATE() AND user_id = :user_id ');
+    $statement->bindParam(':user_id', $id, PDO::PARAM_INT);
+    // $statement->bindParam(':completed_by', $todaysDate, PDO::PARAM_INT);
+    $statement->execute();
+
+    $allTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
+    return $allTasks;
+}
+
 function getAllLists($database): array
 {
     $id = $_SESSION['user']['id'];
@@ -44,10 +65,4 @@ function getAllLists($database): array
 
     $allTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $allTasks;
-}
-
-function isUserLoggedIn(): bool
-{
-    $loggedIn = isset($_SESSION['user']);
-    return $loggedIn;
 }

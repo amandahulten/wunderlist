@@ -7,6 +7,30 @@
   color: red;
 }
 
+.title {
+  padding: 16px;
+}
+
+h1,
+h2 {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.profile,
+.login,
+.register,
+.homepage,
+.change-task-container,
+.list {
+  margin: 16px 20% 0 20%;
+  display: flex;
+  gap: 16px;
+  flex-direction: column;
+}
+
+/* Nav */
+
 nav {
   display: flex;
   width: 100%;
@@ -14,10 +38,6 @@ nav {
   background-color: #f6f3ef;
   align-items: center;
   height: 50px;
-}
-
-.navbar-brand {
-  padding: 16px;
 }
 
 a {
@@ -37,18 +57,36 @@ a {
   text-decoration: none;
 }
 
-/* Homepage */
-.homepage,
-.add-task-container,
-.list,
-.add-list-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.edit-png,
+.delete-png {
+  width: 20px;
+  height: 20px;
 }
 
-.all-tasks-container,
-.task-container {
+.edit,
+.delete {
+  border: none;
+  background-color: white;
+}
+
+.edit {
+  padding-right: 8px;
+}
+
+/* Homepage */
+
+.list-ul {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  border-bottom: 1px solid black;
+  margin: 16px 0 16px 0;
+}
+
+.all-tasks,
+.task-container,
+.todays-tasks {
   width: 100%;
   height: 100%;
   display: flex;
@@ -59,45 +97,46 @@ a {
   padding: 8px;
 }
 
+.todays-tasks,
+.all-tasks {
+  margin: 16px 0 16px 0;
+}
+
+.view-tasks-buttons {
+  display: flex;
+  flex-direction: column;
+}
 .task-buttons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
 }
 
-.task-completed {
-  background-color: green;
-}
-
-.task-uncompleted {
-  background-color: red;
-}
-
-.all-tasks {
+.todays-tasks-loop {
   display: none;
 }
 
-.all-tasks.active {
+.todays-tasks-loop.active {
+  display: block;
+}
+
+.all-tasks-loop {
+  display: none;
+}
+
+.all-tasks-loop.active {
   display: block;
 }
 
 /* Profile */
 
-.profile,
-.login,
-.register,
-.homepage,
-.change-task-container,
-.list {
-  margin: 16px 20% 0 20%;
+.profile-picture-flex {
   display: flex;
-  gap: 16px;
-  flex-direction: column;
+  justify-content: center;
 }
 
 .profile h1,
 .profile h2 {
-  text-align: center;
   margin: 0 0 16px 0;
 }
 
@@ -107,6 +146,11 @@ a {
   width: 100%;
   height: 100%;
   margin: 0 0 16px 0;
+}
+
+.profile-picture-container {
+  width: 250px;
+  height: 300px;
 }
 
 input[type='email'],
@@ -126,53 +170,4 @@ input[type='text'] {
 
 .change-password-container {
   margin-bottom: 32px;
-}
-
-.check {
-  -webkit-appearance: none; /*hides the default checkbox*/
-  height: 20px;
-  width: 20px;
-  transition: 0.1s;
-  background-color: #fe0006;
-  text-align: center;
-  font-weight: 600;
-  color: white;
-  border-radius: 3px;
-  outline: none;
-}
-
-.check:checked {
-  background-color: #0e9700;
-}
-
-.check:before {
-  content: '✖';
-}
-.check:checked:before {
-  content: '✔';
-}
-
-.check:hover {
-  cursor: pointer;
-  opacity: 0.6;
-}
-
-table {
-  border-collapse: collapse;
-}
-
-td {
-  border: 1px solid black;
-}
-
-textarea {
-  resize: none;
-  width: 100%;
-  height: 50px;
-}
-
-.description-column,
-.title-column {
-  max-width: 50px;
-  word-wrap: break-word;
 }
