@@ -57,7 +57,7 @@ require __DIR__ . '/views/header.php';
         <h2>Add new list</h2>
         <form action="/app/posts/create-list.php" method="post">
             <label for="list-name">List name:</label>
-            <input type="text" name="list-name" id="list-name" maxlength="20">
+            <input type="text" name="list-name" id="list-name" maxlength="18">
 
             <button class="btn">Add list</button>
         </form>

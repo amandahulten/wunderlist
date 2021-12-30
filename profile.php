@@ -3,8 +3,10 @@
 
 <section class="profile">
 
-    <h1>Profile</h1>
-    <hr style="width:100%">
+    <h1>Profile
+        <hr style="width:100%">
+    </h1>
+
 
 
     <?php if (isset($_SESSION['errors'])) : ?>

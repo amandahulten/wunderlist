@@ -7,7 +7,11 @@ $taskId = $_GET['task_id'];
 ?>
 
 <div class="change-task-container">
-    <h2>Change task</h2>
+    <h1>Change task
+        <hr style="width:100%">
+    </h1>
+
+
     <form action="/app/posts/update-task.php?id=<?= $listId ?>&task_id=<?= $taskId ?>" method="post">
 
         <label for="new-title">New title:</label>
@@ -20,7 +24,7 @@ $taskId = $_GET['task_id'];
         <input type="date" name="new-deadline" id="new-deadline">
 
         <button class="btn">Change</button>
-        <button class="btn"><a href="/index.php">Cancel</a></button>
+        <button class="btn"><a href="/individual-list.php?id=<?= $listId ?>">Cancel</a></button>
     </form>
 </div>
 

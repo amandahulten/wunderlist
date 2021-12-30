@@ -4,19 +4,12 @@
 <?php $id = $_GET['id']; ?>
 
 <article class="list">
-    <?php if (isset($_SESSION['errors'])) : ?>
-        <?php foreach ($_SESSION['errors'] as $error) : ?>
-            <div class="error">
-                <?= $error; ?>
-            </div>
-        <?php endforeach; ?>
-        <?php unset($_SESSION['errors']) ?>
-    <?php endif; ?>
 
     <?php foreach (getAllLists($database) as $list) : ?>
         <?php if ($list['id'] == $id) : ?>
-            <h1><?= $list['title']; ?></h1>
-            <hr style="width:100%">
+            <h1><?= $list['title']; ?>
+                <hr style="width:100%">
+            </h1>
         <?php endif; ?>
     <?php endforeach; ?>
 
@@ -41,21 +34,31 @@
                     <form action="/app/posts/completed.php" action="post">
                         <input type="hidden" name="task-id" id="task-id" value="<?= $task['id'] ?>">
                         <input type="hidden" name="list-id" id="list-id" value="<?= $task['list_id']; ?>">
-                        <button type="submit" class="btn">Done</button>
+                        <button type="submit" class="btn done">Done</button>
                     </form>
                 </div>
             </div>
         <?php endif; ?>
     <?php endforeach; ?>
 
+
+
     <div class="add-task-container">
         <h2>Add new task</h2>
+        <?php if (isset($_SESSION['errors'])) : ?>
+            <?php foreach ($_SESSION['errors'] as $error) : ?>
+                <div class="error">
+                    <?= $error; ?>
+                </div>
+            <?php endforeach; ?>
+            <?php unset($_SESSION['errors']) ?>
+        <?php endif; ?>
         <form action="/app/posts/create-task.php?id=<?= $id; ?>" method="post">
             <label for="title">Title:</label>
             <input type="text" name="title" id="title" maxlength="20">
 
             <label for="description">Description:</label>
-            <textarea name="description" id="description" maxlength="30"></textarea>
+            <textarea name="description" id="description" maxlength="25"></textarea>
             <small>Max 30 characters</small>
             <br>
 

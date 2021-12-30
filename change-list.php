@@ -4,7 +4,10 @@
 <?php $listId = $_GET['id']; ?>
 
 <div class="change-task-container">
-    <h2>Change listname</h2>
+    <h1>Change listname
+        <hr style="width:100%">
+    </h1>
+
     <form action="/app/posts/update-list.php?id=<?= $listId; ?>" method="post">
 
         <label for="new-title">New title:</label>
