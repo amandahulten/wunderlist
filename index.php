@@ -2,21 +2,11 @@
 require __DIR__ . '/app/autoload.php';
 require __DIR__ . '/views/header.php';
 
-// $todaysDate = ("SELECT * FROM tasks WHERE completed_by >= CURRENT_DATE()");
 
 ?>
 
 
 <article class="homepage">
-
-    <?php if (isset($_SESSION['errors'])) : ?>
-        <?php foreach ($_SESSION['errors'] as $error) : ?>
-            <div class="error">
-                <?= $error; ?>
-            </div>
-        <?php endforeach; ?>
-        <?php unset($_SESSION['errors']) ?>
-    <?php endif; ?>
 
     <?php if (!isUserLoggedIn()) : ?>
         <p>Welcome to stress less! This is your website for a more structured life. Start by: <br> <button class="btn"><a href="/login.php">Login</a></button> or <button class="btn"><a href="/register.php">Register</a></button></p>
@@ -40,12 +30,12 @@ require __DIR__ . '/views/header.php';
                     <ul class="list-ul">
                         <li> <a href="/individual-list.php?id=<?= $list['id']; ?>"><?= $list['title']; ?></a></li>
 
-                        <div class="task-buttons">
+                        <div class="list-task-buttons">
                             <button class="edit"><a href="/change-list.php?id=<?= $list['id'] ?>"><img class="edit-png" src="/uploads/edit.png" alt="Edit button"></a></button>
 
-                            <form action="/app/posts/delete.php" method="post">
+                            <form action="/app/lists/delete.php" method="post">
                                 <input type="hidden" name="list-id" id="list-id" value="<?= $list['id']; ?>">
-                                <button type="submit" class="delete"><img class="delete-png" src="/uploads/bin.png" alt=""></button>
+                                <button type="submit" class="delete"><img class="delete-png" src="/uploads/bin.png" alt="Delete bin"></button>
                             </form>
                         </div>
                     </ul>
@@ -55,7 +45,26 @@ require __DIR__ . '/views/header.php';
 
     <div class="add-list-container">
         <h2>Add new list</h2>
-        <form action="/app/posts/create-list.php" method="post">
+
+        <?php if (isset($_SESSION['errors'])) : ?>
+            <?php foreach ($_SESSION['errors'] as $error) : ?>
+                <div class="error">
+                    <?= $error; ?>
+                </div>
+            <?php endforeach; ?>
+            <?php unset($_SESSION['errors']) ?>
+        <?php endif; ?>
+
+        <?php if (isset($_SESSION['completed'])) : ?>
+            <?php foreach ($_SESSION['completed'] as $completed) : ?>
+                <div class="message">
+                    <?= $completed; ?>
+                </div>
+            <?php endforeach; ?>
+            <?php unset($_SESSION['completed']) ?>
+        <?php endif; ?>
+
+        <form action="/app/lists/create.php" method="post">
             <label for="list-name">List name:</label>
             <input type="text" name="list-name" id="list-name" maxlength="18">
 
@@ -64,33 +73,40 @@ require __DIR__ . '/views/header.php';
     </div>
 
     <div class="view-tasks-buttons">
-        <div class="todays-task-container">
 
-            <button class="btn today">View tasks dued today</button>
+        <div class="todays-task-container">
+            <button class="btn today">View tasks to complete today</button>
 
             <div class="todays-tasks-loop">
-                <?php foreach (getTodaysTasks($database) as $todayTask) : ?>
-                    <div class="todays-tasks">
-                        <h2><?= $todayTask['title']; ?></h2>
-                        <p><?= $todayTask['description']; ?></p>
-                        <h3>Deadline: <?= $todayTask['completed_by']; ?></h3>
-                    </div>
-                <?php endforeach; ?>
+                <?php if (!getTodaysTasks($database)) : ?>
+                    <h3>No tasks to complete today!</h3>
+                <?php else : ?>
+                    <?php foreach (getTodaysTasks($database) as $todayTask) : ?>
+                        <div class="todays-tasks">
+                            <h2><?= $todayTask['title']; ?></h2>
+                            <p><?= $todayTask['description']; ?></p>
+                            <h3>Deadline: <?= $todayTask['completed_by']; ?></h3>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
 
         <div class="all-tasks-container">
-
             <button class="btn task">View all tasks</button>
 
             <div class="all-tasks-loop">
-                <?php foreach (getUncompletedTasks($database) as $task) : ?>
-                    <div class="all-tasks">
-                        <h2><?= $task['title']; ?></h2>
-                        <p><?= $task['description']; ?></p>
-                        <h3>Deadline: <?= $task['completed_by']; ?></h3>
-                    </div>
-                <?php endforeach; ?>
+                <?php if (!getUncompletedTasks($database)) : ?>
+                    <h3>You don't have any tasks!</h3>
+                <?php else : ?>
+                    <?php foreach (getUncompletedTasks($database) as $task) : ?>
+                        <div class="all-tasks">
+                            <h2><?= $task['title']; ?></h2>
+                            <p><?= $task['description']; ?></p>
+                            <h3>Deadline: <?= $task['completed_by']; ?></h3>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </div>
         </div>
     </div>

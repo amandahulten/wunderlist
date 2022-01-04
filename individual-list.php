@@ -5,6 +5,15 @@
 
 <article class="list">
 
+    <?php if (isset($_SESSION['completed'])) : ?>
+        <?php foreach ($_SESSION['completed'] as $completed) : ?>
+            <div class="message">
+                <?= $completed; ?>
+            </div>
+        <?php endforeach; ?>
+        <?php unset($_SESSION['completed']) ?>
+    <?php endif; ?>
+
     <?php foreach (getAllLists($database) as $list) : ?>
         <?php if ($list['id'] == $id) : ?>
             <h1><?= $list['title']; ?>
@@ -14,7 +23,7 @@
     <?php endforeach; ?>
 
     <?php if (!getUncompletedTasks($database)) : ?>
-        <h2>No tasks here yet </h2>
+        <h2>No tasks made yet </h2>
 
     <?php endif; ?>
 
@@ -25,16 +34,19 @@
                 <p><?= $task['description']; ?></p>
                 <h3>Deadline: <?= $task['completed_by']; ?></h3>
                 <div class="task-buttons">
-                    <form action="/app/posts/delete.php" method="post">
-                        <input type="hidden" name="task-id" id="task-id" value="<?= $task['id']; ?>">
-                        <input type="hidden" name="list-id" id="list-id" value="<?= $task['list_id']; ?>">
-                        <button type="submit" class="btn">Delete task</button>
-                    </form>
-                    <button class="btn"><a href="/change-task.php?id=<?= $id; ?>&task_id=<?= $task['id']; ?>">Edit task</a></button>
-                    <form action="/app/posts/completed.php" action="post">
+
+                    <button class="edit-btn"><a href="/change-task.php?id=<?= $id; ?>&task_id=<?= $task['id']; ?>"><img class="edit-png" src="/uploads/edit.png" alt="Edit image"></a></button>
+
+                    <form action="/app/tasks/completed.php" method="post">
                         <input type="hidden" name="task-id" id="task-id" value="<?= $task['id'] ?>">
                         <input type="hidden" name="list-id" id="list-id" value="<?= $task['list_id']; ?>">
-                        <button type="submit" class="btn done">Done</button>
+                        <button type="submit" class="done-btn"><img class="done-png" src="/uploads/done.png" alt="Done png"></button>
+                    </form>
+
+                    <form action="/app/tasks/delete.php" method="post">
+                        <input type="hidden" name="task-id" id="task-id" value="<?= $task['id']; ?>">
+                        <input type="hidden" name="list-id" id="list-id" value="<?= $task['list_id']; ?>">
+                        <button type="submit" class="delete-btn"><img class="delete-png" src="/uploads/bin.png" alt="Delete bin"></button>
                     </form>
                 </div>
             </div>
@@ -42,9 +54,44 @@
     <?php endforeach; ?>
 
 
+    <div class="completed-tasks-container">
+
+        <button class="btn completed">View completed tasks</button>
+
+        <div class="completed-tasks-loop">
+            <?php if (!getCompletedTasks($database)) : ?>
+                <h3>No completed tasks</h3>
+            <?php else : ?>
+                <?php foreach (getCompletedTasks($database) as $task) : ?>
+                    <div class="completed-tasks">
+
+                        <h2><?= $task['title']; ?></h2>
+                        <p><?= $task['description']; ?></p>
+                        <h3>Completed at: <br><?= $task['completed_at']; ?></h3>
+
+
+                        <div class="task-buttons">
+
+                            <form action="/app/tasks/uncompleted.php" method="post">
+                                <input type="hidden" name="task-id" id="task-id" value="<?= $task['id'] ?>">
+                                <input type="hidden" name="list-id" id="list-id" value="<?= $task['list_id']; ?>">
+                                <button type="submit" class="btn undone">Regret</button>
+                            </form>
+                            <form action="/app/tasks/delete.php" method="post">
+                                <input type="hidden" name="task-id" id="task-id" value="<?= $task['id']; ?>">
+                                <input type="hidden" name="list-id" id="list-id" value="<?= $task['list_id']; ?>">
+                                <button type="submit" class="delete-btn"><img class="delete-png" src="/uploads/bin.png" alt="Delete bin"></button>
+                            </form>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        </div>
+    </div>
 
     <div class="add-task-container">
         <h2>Add new task</h2>
+
         <?php if (isset($_SESSION['errors'])) : ?>
             <?php foreach ($_SESSION['errors'] as $error) : ?>
                 <div class="error">
@@ -53,7 +100,17 @@
             <?php endforeach; ?>
             <?php unset($_SESSION['errors']) ?>
         <?php endif; ?>
-        <form action="/app/posts/create-task.php?id=<?= $id; ?>" method="post">
+
+        <?php if (isset($_SESSION['completed'])) : ?>
+            <?php foreach ($_SESSION['completed'] as $completed) : ?>
+                <div class="message">
+                    <?= $completed; ?>
+                </div>
+            <?php endforeach; ?>
+            <?php unset($_SESSION['completed']) ?>
+        <?php endif; ?>
+
+        <form action="/app/tasks/create.php?id=<?= $id; ?>" method="post">
             <label for="title">Title:</label>
             <input type="text" name="title" id="title" maxlength="20">
 

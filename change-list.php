@@ -8,7 +8,7 @@
         <hr style="width:100%">
     </h1>
 
-    <form action="/app/posts/update-list.php?id=<?= $listId; ?>" method="post">
+    <form action="/app/lists/update.php?id=<?= $listId; ?>" method="post">
 
         <label for="new-title">New title:</label>
         <input type="text" name="new-title" id="new-title">

@@ -34,3 +34,16 @@ taskContainers.forEach((taskContainer) => {
     taskContainer.classList.toggle('active');
   });
 });
+
+//View completed tasks
+
+const completedTaskContainers = document.querySelectorAll(
+  '.completed-tasks-loop'
+);
+const completedTaskBtn = document.querySelector('.completed');
+
+completedTaskContainers.forEach((completedTaskContainer) => {
+  completedTaskBtn.addEventListener('click', () => {
+    completedTaskContainer.classList.toggle('active');
+  });
+});

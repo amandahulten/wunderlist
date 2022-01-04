@@ -9,7 +9,7 @@ if (isset($_POST['list-name'])) {
     $userId = $_SESSION['user']['id'];
 
     if (empty($listName)) {
-        $_SESSION['errors'][] = "You need to fill in all fields";
+        $_SESSION['errors'][] = "The field can not be empty";
         redirect('/');
     }
 
@@ -17,6 +17,8 @@ if (isset($_POST['list-name'])) {
     $statement->bindParam(':user_id', $userId, PDO::PARAM_INT);
     $statement->bindParam(':title', $listName, PDO::PARAM_STR);
     $statement->execute();
+
+    $_SESSION['completed'][] = "List added!";
 }
 
 redirect('/');

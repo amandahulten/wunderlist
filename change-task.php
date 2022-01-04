@@ -12,7 +12,7 @@ $taskId = $_GET['task_id'];
     </h1>
 
 
-    <form action="/app/posts/update-task.php?id=<?= $listId ?>&task_id=<?= $taskId ?>" method="post">
+    <form action="/app/tasks/update.php?id=<?= $listId ?>&task_id=<?= $taskId ?>" method="post">
 
         <label for="new-title">New title:</label>
         <input type="text" name="new-title" id="new-title">

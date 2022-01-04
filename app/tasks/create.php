@@ -8,8 +8,8 @@ require __DIR__ . '/../autoload.php';
 
 if (isset($_POST['title'], $_POST['description'], $_POST['deadline'])) {
     $listId = $_GET['id'];
-    $title = trim(filter_var($_POST['title']));
-    $description = trim(filter_var($_POST['description']));
+    $title = trim($_POST['title']);
+    $description = trim($_POST['description']);
     $deadline = $_POST['deadline'];
     $userId = $_SESSION['user']['id'];
     $createdAt = date('Y-m-d');
@@ -28,6 +28,8 @@ if (isset($_POST['title'], $_POST['description'], $_POST['deadline'])) {
     $statement->bindParam(':completed_by', $deadline, PDO::PARAM_STR);
     $statement->bindParam(':created_at', $createdAt, PDO::PARAM_STR);
     $statement->execute();
+
+    $_SESSION['completed'][] = "Task added!";
 }
 
 redirect('/individual-list.php?id=' . $listId);

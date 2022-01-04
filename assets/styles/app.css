@@ -22,6 +22,9 @@
 }
 
 :root {
+  /* Colors */
+  --task-color: #d1cfcf;
+  --btn-color: rgb(173, 170, 170);
   /* Font sizes */
   --h1: 28px;
   --h2: 24px;
@@ -31,6 +34,10 @@
 
 .error {
   color: red;
+}
+
+.message {
+  color: rgb(14, 136, 14);
 }
 
 .title {
@@ -113,7 +120,8 @@ a {
 }
 
 .edit-png,
-.delete-png {
+.delete-png,
+.done-png {
   width: 20px;
   height: 20px;
 }
@@ -141,19 +149,21 @@ a {
 
 .all-tasks,
 .task-container,
-.todays-tasks {
+.todays-tasks,
+.completed-tasks {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: #bebebe;
+  background-color: var(--task-color);
   border-radius: 5px;
   padding: 8px;
 }
 
 .todays-tasks,
-.all-tasks {
+.all-tasks,
+.completed-tasks {
   margin: 16px 0 16px 0;
 }
 
@@ -163,7 +173,12 @@ a {
 }
 .task-buttons {
   display: flex;
-  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid black;
+  width: 100%;
+  padding-top: 6px;
 }
 
 .todays-tasks-loop {
@@ -221,6 +236,7 @@ textarea {
   margin: 5px;
   font-family: 'Nunito regular';
   border-radius: 2px;
+  background-color: var(--btn-color);
 }
 
 .change-password-container {
@@ -229,8 +245,42 @@ textarea {
 
 /* Lists */
 
+.list-task-buttons {
+  display: flex;
+  align-items: center;
+}
+
 .done {
   background-color: rgb(93, 184, 93);
+}
+
+.undone {
+  background-color: rgb(179, 72, 72);
+  color: white;
+}
+
+.completed-tasks-loop {
+  display: none;
+}
+
+.completed-tasks-loop.active {
+  display: block;
+}
+
+.completed-tasks-container,
+.todays-task-container,
+.all-tasks-container,
+.change-email-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.delete-btn,
+.edit-btn,
+.done-btn {
+  background-color: var(--task-color);
+  border: none;
 }
 
 /* Change task/list */
