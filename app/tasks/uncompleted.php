@@ -8,7 +8,7 @@ require __DIR__ . '/../autoload.php';
 if (isset($_POST['task-id'], $_POST['list-id'])) {
     $taskId = $_POST['task-id'];
     $listId = $_POST['list-id'];
-    $unCompleted = NULL;
+    $unCompleted = null;
     $userId = $_SESSION['user']['id'];
 
     $statement = $database->prepare("UPDATE tasks SET completed_at = :completed_at WHERE id = :id AND user_id = :user_id");
