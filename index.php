@@ -11,7 +11,6 @@ require __DIR__ . '/views/header.php';
     <?php if (!isUserLoggedIn()) : ?>
         <p>Welcome to stress less! This is your website for a more structured life. Start by: <br> <button class="btn"><a href="/login.php">Login</a></button> or <button class="btn"><a href="/register.php">Register</a></button></p>
     <?php endif; ?>
-
     <?php if (isUserLoggedIn()) : ?>
 
         <div class="list-flex">
