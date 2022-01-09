@@ -16,20 +16,21 @@
 
     <form action="app/users/register.php" method="post">
 
-        <div class="">
+        <div>
             <label for="username">Username</label>
             <input class="form-control" type="text" name="username" id="username" required>
         </div>
 
-        <div class="">
+        <div>
             <label for="email">Email</label>
             <input class="form-control" type="email" name="email" id="email" placeholder="example@gmail.com" required>
 
         </div>
 
-        <div class="">
+        <div class="register-password">
             <label for="password">Password</label>
             <input class="form-control" type="password" name="password" id="password" required>
+            <small>Min 6 characters</small>
         </div>
 
         <button type="submit" class="btn" name="reg_user">Register</button>

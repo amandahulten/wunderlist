@@ -104,3 +104,9 @@ nav ul li a {
 .edit {
   padding-right: 8px;
 }
+
+@media screen and (min-width: 768px) {
+  nav {
+    padding: 0 20px;
+  }
+}

@@ -15,16 +15,14 @@
     <?php endif; ?>
 
     <form action="app/users/login.php" method="post">
-        <div class="">
+        <div>
             <label for="email">Email</label>
             <input class="form-control" type="email" name="email" id="email" required>
-
         </div>
 
-        <div class="">
+        <div>
             <label for="password">Password</label>
             <input class="form-control" type="password" name="password" id="password" required>
-
         </div>
 
         <button type="submit" class="btn">Login</button>

@@ -1,0 +1,65 @@
+/* Lists */
+
+.list-task-buttons {
+  display: flex;
+  align-items: center;
+}
+
+.done {
+  background-color: rgb(93, 184, 93);
+}
+
+.undone {
+  background-color: rgb(179, 72, 72);
+  color: white;
+}
+
+.completed-tasks-loop {
+  display: none;
+}
+
+.completed-tasks-loop.active {
+  display: block;
+}
+
+.completed-tasks-container,
+.todays-task-container,
+.all-tasks-container,
+.change-email-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.delete-btn,
+.edit-btn,
+.done-btn {
+  background-color: var(--task-color);
+  border: none;
+}
+.list-ul a {
+  font-size: var(--h2);
+}
+
+/* Change task/list */
+
+.change-task-container h1,
+.change-list-container h1 {
+  padding-bottom: 8px;
+}
+
+footer {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.task-title,
+.task-deadline,
+.task-completed {
+  font-family: 'Nunito regular';
+}
+
+.change-password-container {
+  margin-bottom: 32px;
+}
