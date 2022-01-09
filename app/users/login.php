@@ -24,7 +24,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 
 
     if (!$user) {
-        $_SESSION['errors'][] = "That email does not belong to any account.";
+        $_SESSION['errors'][] = "This email does not belong to any account.";
         redirect('/login.php');
     }
 
@@ -37,7 +37,7 @@ if (isset($_POST['email'], $_POST['password'])) {
         ];
         redirect('/');
     }
-    $_SESSION['errors'][] = "The email or password is wrong";
+    $_SESSION['errors'][] = "The email or password is wrong, please try again!";
     redirect('/login.php');
 }
 

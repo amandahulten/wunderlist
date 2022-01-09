@@ -31,6 +31,7 @@ if (isset($_FILES['avatar'])) {
 
 
     $_SESSION['user']['avatar'] = $avatarName;
+    $_SESSION['completed'][] = "Profile picture added!";
 }
 
 redirect('/profile.php');

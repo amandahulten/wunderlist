@@ -17,5 +17,8 @@ if (isset($_POST['task-id'], $_POST['list-id'])) {
     $statement->bindParam(':completed_at', $completedDate, PDO::PARAM_STR);
     $statement->execute();
 
+
+    $_SESSION['completed'][] = "Task moved to completed tasks!";
+
     redirect('/individual-list.php?id=' . $listId);
 }

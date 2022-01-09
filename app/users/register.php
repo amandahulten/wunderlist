@@ -22,8 +22,8 @@ if (isset($_POST['email'], $_POST['password'], $_POST['username'])) {
         redirect('/register.php');
     }
 
-    //Checks that password is more than 6 characters
-    if (strlen($_POST['password']) < 6) {
+    //Checks that password is more than 16 characters
+    if (strlen($_POST['password']) < 16) {
         $_SESSION['errors'][] = "Your password must contain 6 or more characters.";
         redirect('/register.php');
     }

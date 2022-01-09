@@ -10,11 +10,13 @@ if (isset($_POST['current-password'], $_POST['new-password'])) {
     $newHachedPassword = password_hash($_POST['new-password'], PASSWORD_DEFAULT);
     $id = $_SESSION['user']['id'];
 
+    // Checks if new password is equal to new password
     if ($currentPassword === $newPassword) {
         echo "You typed in the same password in both fields";
         redirect('/profile.php');
     }
 
+    // Checks if any field is empty
     if (empty($currentPassword) || empty($newPassword)) {
         $_SESSION['errors'][] = "You need to fill in all fields";
         redirect('/profile.php');
@@ -28,7 +30,7 @@ if (isset($_POST['current-password'], $_POST['new-password'])) {
     $password = $statement->fetch(PDO::FETCH_ASSOC);
 
     if (!password_verify($currentPassword, $password['password'])) {
-        $_SESSION['errors'][] = "Wrong password";
+        $_SESSION['errors'][] = "Wrong password, please try again";
         redirect('/profile.php');
     }
 
@@ -38,7 +40,7 @@ if (isset($_POST['current-password'], $_POST['new-password'])) {
     $statement->bindParam(':password', $newHachedPassword, PDO::PARAM_STR);
     $statement->execute();
 
-
+    $_SESSION['completed'][] = "Password updated!";
     redirect('/');
 }
 

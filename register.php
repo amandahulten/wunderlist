@@ -30,7 +30,7 @@
         <div class="register-password">
             <label for="password">Password</label>
             <input class="form-control" type="password" name="password" id="password" required>
-            <small>Min 6 characters</small>
+            <small>Min 16 characters</small>
         </div>
 
         <button type="submit" class="btn" name="reg_user">Register</button>

@@ -17,6 +17,14 @@
         <?php endforeach; ?>
         <?php unset($_SESSION['errors']) ?>
     <?php endif; ?>
+    <?php if (isset($_SESSION['completed'])) : ?>
+        <?php foreach ($_SESSION['completed'] as $completed) : ?>
+            <div class="message">
+                <?= $completed; ?>
+            </div>
+        <?php endforeach; ?>
+        <?php unset($_SESSION['completed']) ?>
+    <?php endif; ?>
 
     <div class="profile-picture-flex">
         <?php if ($_SESSION['user']['avatar'] !== null) : ?>
@@ -30,7 +38,14 @@
         <?php endif; ?>
     </div>
 
+    <div class="information">
+        <h3>Username: <?= $_SESSION['user']['username'] ?></h3>
+        <h3>Email: <?= $_SESSION['user']['email'] ?></h3>
+    </div>
+    <hr style="width: 100%;">
+
     <div class="form-upload-container">
+        <h2>Upload profile picture</h2>
         <form class="profile-form" action="/app/users/create-avatar.php" method="post" enctype="multipart/form-data">
             <div class="profile-upload">
                 <label for="avatar">Add profile picture:</label>
