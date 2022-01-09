@@ -23,7 +23,7 @@
 
         <div class="">
             <label for="email">Email</label>
-            <input class="form-control" type="email" name="email" id="email" required>
+            <input class="form-control" type="email" name="email" id="email" placeholder="example@gmail.com" required>
 
         </div>
 

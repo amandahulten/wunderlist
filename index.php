@@ -9,9 +9,14 @@ require __DIR__ . '/views/header.php';
 <article class="homepage">
 
     <?php if (!isUserLoggedIn()) : ?>
-        <p>Welcome to stress less! This is your website for a more structured life. Start by: <br> <button class="btn"><a href="/login.php">Login</a></button> or <button class="btn"><a href="/register.php">Register</a></button></p>
+        <div class="outlogged">
+            <h2>Welcome to stress less! </h2>
+            <p>This is your website for a more structured life. Start by: <br> <button class="btn"><a href="/login.php">Login</a></button> or <button class="btn"><a href="/register.php">Register</a></button></p>
+        </div>
     <?php endif; ?>
     <?php if (isUserLoggedIn()) : ?>
+
+        <h3><?= 'Welcome ' . ($_SESSION['user']['username']) . '!'; ?></h3>
 
         <div class="list-flex">
             <?php if (!getAllLists($database)) : ?>
@@ -23,7 +28,7 @@ require __DIR__ . '/views/header.php';
             <?php foreach (getAllLists($database) as $list) : ?>
                 <div class="list-container">
                     <ul class="list-ul">
-                        <li> <a href="/individual-list.php?id=<?= $list['id']; ?>"><?= $list['title']; ?></a></li>
+                        <li> <a href="/individual-list.php?id=<?= $list['id']; ?>"><?= htmlspecialchars($list['title']); ?></a></li>
 
                         <div class="list-task-buttons">
                             <button class="edit"><a href="/change-list.php?id=<?= $list['id'] ?>"><img class="edit-png" src="/uploads/edit.png" alt="Edit button"></a></button>
@@ -74,13 +79,13 @@ require __DIR__ . '/views/header.php';
 
                 <div class="todays-tasks-loop">
                     <?php if (!getTodaysTasks($database)) : ?>
-                        <h3>No tasks to complete today!</h3>
+                        <h3 class="btn-message">No tasks to complete today!</h3>
                     <?php else : ?>
                         <?php foreach (getTodaysTasks($database) as $todayTask) : ?>
                             <div class="todays-tasks">
-                                <h2><?= $todayTask['title']; ?></h2>
-                                <p><?= $todayTask['description']; ?></p>
-                                <h3>Deadline: <?= $todayTask['completed_by']; ?></h3>
+                                <h2 class="task-title"><?= htmlspecialchars($todayTask['title']); ?></h2>
+                                <p><?= htmlspecialchars($todayTask['description']); ?></p>
+                                <h3 class="task-deadline">Deadline: <?= $todayTask['completed_by']; ?></h3>
                             </div>
                         <?php endforeach; ?>
                     <?php endif; ?>
@@ -92,13 +97,13 @@ require __DIR__ . '/views/header.php';
 
                 <div class="all-tasks-loop">
                     <?php if (!getUncompletedTasks($database)) : ?>
-                        <h3>You don't have any tasks!</h3>
+                        <h3 class="btn-message">You don't have any tasks!</h3>
                     <?php else : ?>
                         <?php foreach (getUncompletedTasks($database) as $task) : ?>
                             <div class="all-tasks">
-                                <h2><?= $task['title']; ?></h2>
-                                <p><?= $task['description']; ?></p>
-                                <h3>Deadline: <?= $task['completed_by']; ?></h3>
+                                <h2 class="task-title"><?= htmlspecialchars($task['title']); ?></h2>
+                                <p><?= htmlspecialchars($task['description']); ?></p>
+                                <h3 class="task-deadline">Deadline: <?= $task['completed_by']; ?></h3>
                             </div>
                         <?php endforeach; ?>
                     <?php endif; ?>

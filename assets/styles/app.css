@@ -21,32 +21,48 @@
   src: url(/assets/fonts/Nunito-Regular.woff2);
 }
 
+@font-face {
+  font-family: 'Tangerine';
+  src: url(/assets/fonts/Tangerine-Regular.woff);
+  src: url(/assets/fonts/Tangerine-Regular.woff2);
+}
+
 :root {
   /* Colors */
-  --task-color: #d1cfcf;
-  --btn-color: rgb(173, 170, 170);
+  --primary-color: #dee0e0;
+  --secondary-color: #dee0e0;
+  --white: #fff;
+
   /* Font sizes */
+  --title: 48px;
   --h1: 28px;
-  --h2: 24px;
+  --h2: 20px;
   --h3: 18px;
   --p: 16px;
 }
 
+body {
+  height: 100vh;
+}
+
 .error {
   color: red;
+  text-align: center;
+  font-family: 'Nunito regular';
+  border: 1px solid black;
+  margin: 6px 0 6px 0;
+  padding: 2px 0 2px 0;
 }
 
 .message {
   color: rgb(14, 136, 14);
-}
-
-.title {
-  padding: 16px;
   font-family: 'Nunito regular';
+  text-align: center;
 }
 
 h1,
-h2 {
+h2,
+h3 {
   text-align: center;
   margin-bottom: 8px;
 }
@@ -72,6 +88,13 @@ h3 {
 p {
   font-family: 'Nunito extralight';
   font-size: var(--p);
+  margin-bottom: 8px;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+  font-family: 'Nunito light';
 }
 
 form {
@@ -90,50 +113,15 @@ form {
   flex-direction: column;
 }
 
-/* Nav */
-
-nav {
-  display: flex;
-  width: 100%;
-  justify-content: space-between;
-  background-color: #f6f3ef;
-  align-items: center;
-  height: 50px;
+.btn-message {
+  text-align: center;
+  font-size: var(--p);
 }
 
-a {
-  text-decoration: none;
-  color: black;
-  font-family: 'Nunito regular';
-}
+/* Start-page */
 
-.navbar-nav {
-  display: flex;
-  flex-direction: row;
-  gap: 16px;
-  list-style-type: none;
-  margin: 0 16px 0 0;
-}
-
-.nav-item {
-  text-decoration: none;
-}
-
-.edit-png,
-.delete-png,
-.done-png {
-  width: 20px;
-  height: 20px;
-}
-
-.edit,
-.delete {
-  border: none;
-  background-color: white;
-}
-
-.edit {
-  padding-right: 8px;
+.outlogged {
+  text-align: center;
 }
 
 /* Homepage */
@@ -156,7 +144,7 @@ a {
   display: flex;
   align-items: center;
   flex-direction: column;
-  background-color: var(--task-color);
+  background-color: var(--primary-color);
   border-radius: 5px;
   padding: 8px;
 }
@@ -178,7 +166,7 @@ a {
   justify-content: space-between;
   border-top: 1px solid black;
   width: 100%;
-  padding-top: 6px;
+  padding-top: 10px;
 }
 
 .todays-tasks-loop {
@@ -205,7 +193,7 @@ a {
 }
 
 .profile-picture-container img {
-  transform: scale(1);
+  /* transform: scale(1); */
   object-fit: cover;
   width: 100%;
   height: 100%;
@@ -224,9 +212,17 @@ input[type='text'] {
   padding: 8px 8px;
   margin: 8px 0;
 }
+
+input[type='date'] {
+  padding: 4px 0 4px 0;
+  margin: 8px 0 8px 0;
+}
 textarea {
   resize: none;
   width: 100%;
+  padding: 8px 8px;
+  margin: 8px 0 0 0;
+  height: 50px;
 }
 
 .btn {
@@ -236,7 +232,12 @@ textarea {
   margin: 5px;
   font-family: 'Nunito regular';
   border-radius: 2px;
-  background-color: var(--btn-color);
+  background-color: var(--secondary-color);
+}
+
+.btn:hover {
+  opacity: 0.8;
+  cursor: pointer;
 }
 
 .change-password-container {
@@ -288,4 +289,16 @@ textarea {
 .change-task-container h1,
 .change-list-container h1 {
   padding-bottom: 8px;
+}
+
+footer {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 20px;
+}
+
+.task-title,
+.task-deadline,
+.task-completed {
+  font-family: 'Nunito regular';
 }

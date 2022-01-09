@@ -8,6 +8,7 @@
     <title><?php echo $config['title']; ?></title>
 
     <link rel="stylesheet" href="/assets/styles/app.css">
+    <link rel="stylesheet" href="/assets/styles/nav.css">
 </head>
 
 <body>

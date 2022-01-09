@@ -12,6 +12,18 @@
 //   }
 // });
 
+// Hamburger-menu
+
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.navbar-nav');
+
+function mobileMenu() {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+}
+
+hamburger.addEventListener('click', mobileMenu);
+
 // View tasks dued today
 
 const todaysTaskContainers = document.querySelectorAll('.todays-tasks-loop');

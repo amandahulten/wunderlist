@@ -6,16 +6,25 @@ require __DIR__ . '/../autoload.php';
 
 
 if (isset($_POST['email'], $_POST['password'], $_POST['username'])) {
-    $email = trim(filter_var($_POST['email'], FILTER_SANITIZE_EMAIL));
-
+    $email = trim($_POST['email']);
     $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    $username = trim($_POST['username']);
 
-    $username = trim(filter_var($_POST['username'], FILTER_SANITIZE_STRING));
-
-    // $placeholderImg = '../../uploads/placeholder.png';
-
+    // Checks for emtpy inputfields
     if (empty($email) || empty($password) || empty($username)) {
         $_SESSION['errors'][] = "You need to fill in all fields.";
+        redirect('/register.php');
+    }
+
+    //Checks for valid email
+    if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+        $_SESSION['errors'][] = "This email is not valid, please try again.";
+        redirect('/register.php');
+    }
+
+    //Checks that password is more than 6 characters
+    if (strlen($_POST['password']) < 6) {
+        $_SESSION['errors'][] = "Your password must contain 6 or more characters.";
         redirect('/register.php');
     }
 
@@ -23,6 +32,7 @@ if (isset($_POST['email'], $_POST['password'], $_POST['username'])) {
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->execute();
     $compareEmail = $statement->fetch(PDO::FETCH_ASSOC);
+    // Checks if email already exists
     if ($compareEmail !== false) {
         $_SESSION['errors'][] = "This email aldready exists, try another one.";
         redirect('/register.php');
@@ -32,6 +42,7 @@ if (isset($_POST['email'], $_POST['password'], $_POST['username'])) {
     $statement->bindParam(':username', $username, PDO::PARAM_STR);
     $statement->execute();
     $compareUsername = $statement->fetch(PDO::FETCH_ASSOC);
+    // Checks if username already exists
     if ($compareUsername !== false) {
         $_SESSION['errors'][] = "This username already exist, try another one.";
         redirect('/register.php');
