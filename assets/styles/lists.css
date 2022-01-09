@@ -12,6 +12,8 @@
 .undone {
   background-color: rgb(179, 72, 72);
   color: white;
+  margin: 0;
+  padding: 5px;
 }
 
 .completed-tasks-loop {
@@ -25,7 +27,8 @@
 .completed-tasks-container,
 .todays-task-container,
 .all-tasks-container,
-.change-email-container {
+.change-email-container,
+.add-task-container {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -41,17 +44,18 @@
   font-size: var(--h2);
 }
 
+.add-task-query {
+  display: none;
+}
+
+.add-task-query.active {
+  display: block;
+}
 /* Change task/list */
 
 .change-task-container h1,
 .change-list-container h1 {
   padding-bottom: 8px;
-}
-
-footer {
-  text-align: center;
-  padding-top: 50px;
-  padding-bottom: 20px;
 }
 
 .task-title,
@@ -60,6 +64,8 @@ footer {
   font-family: 'Nunito regular';
 }
 
-.change-password-container {
-  margin-bottom: 32px;
+.specification-items {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
 }

@@ -6,7 +6,7 @@ require __DIR__ . '/../autoload.php';
 
 
 
-if (isset($_POST['title'], $_POST['description'], $_POST['deadline'])) {
+if (isset($_POST['title'], $_POST['deadline'])) {
     $listId = $_GET['id'];
     $title = trim($_POST['title']);
     $description = trim($_POST['description']);
@@ -15,7 +15,7 @@ if (isset($_POST['title'], $_POST['description'], $_POST['deadline'])) {
     $createdAt = date('Y-m-d');
 
     if (empty($title) || empty($deadline)) {
-        $_SESSION['errors'][] = "You need to fill in all fields";
+        $_SESSION['errors'][] = "You need to fill in both title and deadline";
         redirect('/individual-list.php?id=' . $listId);
     }
 

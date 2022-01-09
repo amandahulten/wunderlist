@@ -110,3 +110,27 @@ nav ul li a {
     padding: 0 20px;
   }
 }
+
+@media screen and (min-width: 1024px) {
+  /* .hamburger {
+    display: none;
+  }
+
+  .navbar-nav {
+    position: relative;
+    right: 0;
+    top: 0;
+    height: 70px;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    list-style-type: none;
+    background-color: white;
+  } */
+  .navbar-nav.active {
+    width: 50%;
+  }
+}

@@ -35,7 +35,7 @@
 
   /* Font sizes */
   --title: 48px;
-  --h1: 32px;
+  --h1: 28px;
   --h2: 24px;
   --h3: 18px;
   --p: 16px;
@@ -138,6 +138,22 @@ textarea {
   font-size: var(--p);
 }
 
+.btn {
+  border: none;
+  padding: 8px 8px;
+  text-decoration: none;
+  margin: 8px 0 8px 0;
+  font-family: 'Nunito regular';
+  border-radius: 2px;
+  background-color: var(--secondary-color);
+  text-align: center;
+}
+
+.btn:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
 /* Start-page */
 
 .outlogged {
@@ -183,26 +199,34 @@ textarea {
   display: flex;
   gap: 16px;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   border-top: 1px solid black;
   width: 100%;
   padding-top: 10px;
 }
 
+.add-list-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.add-list-query,
+.all-tasks-loop,
 .todays-tasks-loop {
   display: none;
 }
 
+.add-list-query.active,
+.all-tasks-loop.active,
 .todays-tasks-loop.active {
   display: block;
 }
 
-.all-tasks-loop {
-  display: none;
-}
-
-.all-tasks-loop.active {
-  display: block;
+footer {
+  text-align: center;
+  padding-top: 50px;
+  padding-bottom: 20px;
 }
 
 @media screen and (min-width: 768px) {

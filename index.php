@@ -16,12 +16,45 @@ require __DIR__ . '/views/header.php';
     <?php endif; ?>
     <?php if (isUserLoggedIn()) : ?>
 
-        <h3><?= 'Welcome ' . ($_SESSION['user']['username']) . '!'; ?></h3>
 
+        <h1><?= 'Welcome ' . ($_SESSION['user']['username']) . '!'; ?></h1>
+
+        <h2>Start your stress-free and organized life by creating a list below.</h2>
         <div class="list-flex">
-            <?php if (!getAllLists($database)) : ?>
-                <h1>Create a list to start</h1>
-            <?php else : ?>
+
+            <div class="add-list-container">
+
+                <?php if (isset($_SESSION['errors'])) : ?>
+                    <?php foreach ($_SESSION['errors'] as $error) : ?>
+                        <div class="error">
+                            <?= $error; ?>
+                        </div>
+                    <?php endforeach; ?>
+                    <?php unset($_SESSION['errors']) ?>
+                <?php endif; ?>
+
+                <?php if (isset($_SESSION['completed'])) : ?>
+                    <?php foreach ($_SESSION['completed'] as $completed) : ?>
+                        <div class="message">
+                            <?= $completed; ?>
+                        </div>
+                    <?php endforeach; ?>
+                    <?php unset($_SESSION['completed']) ?>
+                <?php endif; ?>
+
+                <button class="btn list">Add new list</button>
+
+                <div class="add-list-query">
+                    <form action="/app/lists/create.php" method="post">
+                        <label for="list-name">List name:</label>
+                        <input type="text" name="list-name" id="list-name" maxlength="18">
+
+                        <button class="btn">Add list</button>
+                    </form>
+                </div>
+            </div>
+
+            <?php if (getAllLists($database)) : ?>
                 <h1>Lists</h1>
             <?php endif; ?>
 
@@ -41,35 +74,6 @@ require __DIR__ . '/views/header.php';
                     </ul>
                 </div>
             <?php endforeach; ?>
-        </div>
-
-        <div class="add-list-container">
-            <h2>Add new list</h2>
-
-            <?php if (isset($_SESSION['errors'])) : ?>
-                <?php foreach ($_SESSION['errors'] as $error) : ?>
-                    <div class="error">
-                        <?= $error; ?>
-                    </div>
-                <?php endforeach; ?>
-                <?php unset($_SESSION['errors']) ?>
-            <?php endif; ?>
-
-            <?php if (isset($_SESSION['completed'])) : ?>
-                <?php foreach ($_SESSION['completed'] as $completed) : ?>
-                    <div class="message">
-                        <?= $completed; ?>
-                    </div>
-                <?php endforeach; ?>
-                <?php unset($_SESSION['completed']) ?>
-            <?php endif; ?>
-
-            <form action="/app/lists/create.php" method="post">
-                <label for="list-name">List name:</label>
-                <input type="text" name="list-name" id="list-name" maxlength="18">
-
-                <button class="btn">Add list</button>
-            </form>
         </div>
 
         <div class="view-tasks-buttons">

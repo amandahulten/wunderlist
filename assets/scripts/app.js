@@ -1,17 +1,3 @@
-// console.log('Hello World');
-
-// const completed = document.querySelector('.btn.completed');
-// const uncompleted = document.querySelector('.btn.uncompleted');
-// const taskContainer = document.querySelector('.task-container');
-
-// uncompleted.addEventListener('click', function () {
-//   if (uncompleted.innerHTML === 'Uncompleted') {
-//     uncompleted.innerHTML = 'Completed';
-//   } else {
-//     uncompleted.innerHTML = 'Uncompleted';
-//   }
-// });
-
 // Hamburger-menu
 
 const hamburger = document.querySelector('.hamburger');
@@ -23,6 +9,17 @@ function mobileMenu() {
 }
 
 hamburger.addEventListener('click', mobileMenu);
+
+// Add-list button
+
+const addListContainers = document.querySelectorAll('.add-list-query');
+const addListBtn = document.querySelector('.list');
+
+addListContainers.forEach((addListContainer) => {
+  addListBtn.addEventListener('click', () => {
+    addListContainer.classList.toggle('active');
+  });
+});
 
 // View tasks dued today
 
@@ -44,6 +41,17 @@ const allTaskBtn = document.querySelector('.task');
 taskContainers.forEach((taskContainer) => {
   allTaskBtn.addEventListener('click', () => {
     taskContainer.classList.toggle('active');
+  });
+});
+
+// Add-task button
+
+const addTaskContainers = document.querySelectorAll('.add-task-query');
+const addTaskBtn = document.querySelector('.add');
+
+addTaskContainers.forEach((addTaskContainer) => {
+  addTaskBtn.addEventListener('click', () => {
+    addTaskContainer.classList.toggle('active');
   });
 });
 
