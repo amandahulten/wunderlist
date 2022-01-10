@@ -15,7 +15,6 @@ require __DIR__ . '/views/header.php';
         </div>
     <?php endif; ?>
     <?php if (isUserLoggedIn()) : ?>
-
         <h1><?= 'Welcome ' . ($_SESSION['user']['username']) . '!'; ?></h1>
 
         <h2>Start your stress-free and organized life by creating a list below.</h2>

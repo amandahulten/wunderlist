@@ -2,7 +2,6 @@
 <?php require __DIR__ . '/views/header.php'; ?>
 
 <?php if (isUserLoggedIn()) : ?>
-
     <?php $id = $_GET['id']; ?>
 
     <article class="list">
