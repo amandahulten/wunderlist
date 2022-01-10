@@ -16,7 +16,6 @@ require __DIR__ . '/views/header.php';
     <?php endif; ?>
     <?php if (isUserLoggedIn()) : ?>
 
-
         <h1><?= 'Welcome ' . ($_SESSION['user']['username']) . '!'; ?></h1>
 
         <h2>Start your stress-free and organized life by creating a list below.</h2>
@@ -47,8 +46,7 @@ require __DIR__ . '/views/header.php';
                 <div class="add-list-query">
                     <form action="/app/lists/create.php" method="post">
                         <label for="list-name">List name:</label>
-                        <input type="text" name="list-name" id="list-name" maxlength="18">
-
+                        <input type="text" name="list-name" id="list-name" maxlength="8" placeholder="Max 8 characters">
                         <button class="btn">Add list</button>
                     </form>
                 </div>
@@ -108,6 +106,9 @@ require __DIR__ . '/views/header.php';
                                 <h2 class="task-title"><?= htmlspecialchars($task['title']); ?></h2>
                                 <p><?= htmlspecialchars($task['description']); ?></p>
                                 <h3 class="task-deadline">Deadline: <?= $task['completed_by']; ?></h3>
+
+                                <h3>In list: <?= $task['list_id'] ?> </h3>
+
                             </div>
                         <?php endforeach; ?>
                     <?php endif; ?>

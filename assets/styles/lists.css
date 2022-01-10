@@ -16,6 +16,24 @@
   padding: 5px;
 }
 
+.list-title-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+
+.back-img {
+  position: absolute;
+  left: 20%;
+  margin-bottom: 7px;
+}
+
+.back-png {
+  width: 30px;
+  height: 30px;
+}
+
 .completed-tasks-loop {
   display: none;
 }
@@ -68,4 +86,16 @@
   display: flex;
   justify-content: center;
   gap: 6px;
+}
+
+@media screen and (min-width: 768px) {
+  .back-img {
+    left: 25%;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .back-img {
+    left: 25%;
+  }
 }

@@ -14,12 +14,6 @@ if (isset($_POST['new-email'])) {
         redirect('/profile.php');
     }
 
-    // Checks that new email is not the same as current email
-    if ($newEmail === $_SESSION['user']['email']) {
-        $_SESSION['errors'][] = "This email is already registered on your account.";
-        redirect('/profile.php');
-    }
-
     //Checks for valid email
     if (filter_var($newEmail, FILTER_VALIDATE_EMAIL) === false) {
         $_SESSION['errors'][] = "This email is not valid, please try again.";
@@ -41,6 +35,20 @@ if (isset($_POST['new-email'])) {
     $statement->bindParam(':id', $id, PDO::PARAM_INT);
     $statement->bindParam(':email', $newEmail, PDO::PARAM_STR);
     $statement->execute();
+
+    $statement = $database->prepare('SELECT * FROM users WHERE email = :email');
+    $statement->bindParam(':email', $newEmail, PDO::PARAM_STR);
+    $statement->execute();
+
+
+    $user = $statement->fetch(PDO::FETCH_ASSOC);
+
+    $_SESSION['user'] = [
+        'email' => $user['email'],
+        'username' => $user['username'],
+        'id' => $user['id'],
+        'avatar' => $user['avatar']
+    ];
 
     $_SESSION['completed'][] = "Email updated!";
     redirect('/profile.php');

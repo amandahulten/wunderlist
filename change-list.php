@@ -1,6 +1,8 @@
 <?php require __DIR__ . '/app/autoload.php'; ?>
 <?php require __DIR__ . '/views/header.php'; ?>
 
+<?php if (isUserLoggedIn()) : ?>;
+
 <?php $listId = $_GET['id']; ?>
 
 <div class="change-task-container">
@@ -17,5 +19,6 @@
         <button class="btn"><a href="/index.php">Cancel</a></button>
     </form>
 </div>
+<?php endif; ?>
 
 <?php require __DIR__ . '/views/footer.php'; ?>

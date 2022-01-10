@@ -1,5 +1,5 @@
-.title a {
-  padding: 16px;
+.title {
+  padding: 12px;
   font-family: 'Tangerine';
   text-align: center;
   font-size: var(--title);
@@ -17,7 +17,7 @@ nav {
 }
 
 .navbar-nav {
-  position: absolute;
+  position: fixed;
   right: -100%;
   top: 0;
   height: 100vh;

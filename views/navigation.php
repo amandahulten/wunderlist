@@ -1,7 +1,7 @@
 <nav>
 
     <div class="title">
-        <a href="/index.php"><?php echo $config['title']; ?></a>
+        <div class="title"><?php echo $config['title']; ?></div>
     </div>
 
     <div class="hamburger">

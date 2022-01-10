@@ -142,7 +142,7 @@ textarea {
   border: none;
   padding: 8px 8px;
   text-decoration: none;
-  margin: 8px 0 8px 0;
+  margin: 12px 0;
   font-family: 'Nunito regular';
   border-radius: 2px;
   background-color: var(--secondary-color);
@@ -165,10 +165,10 @@ textarea {
 .list-ul {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 16px;
   border-bottom: 1px solid black;
-  margin: 16px 0 16px 0;
+  margin: 16px 0;
 }
 
 .all-tasks,
@@ -229,6 +229,12 @@ footer {
   padding-bottom: 20px;
 }
 
+.social-media-icon {
+  width: 30px;
+  height: 30px;
+  margin: 5px;
+}
+
 @media screen and (min-width: 768px) {
   .profile,
   .login,
@@ -236,7 +242,7 @@ footer {
   .homepage,
   .change-task-container,
   .list {
-    margin: 20px 25% 32px 25%;
+    margin: 20px 25% 0 25%;
   }
 
   input[type='date'] {

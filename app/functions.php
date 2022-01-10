@@ -65,3 +65,16 @@ function getAllLists($database): array
     $allTasks = $statement->fetchAll(PDO::FETCH_ASSOC);
     return $allTasks;
 }
+
+function printBelongingList($id, $database)
+{
+    if ($id) {
+        $statement = $database->query('SELECT task.list_id, list.title FROM tasks INNER JOIN lists ON tasks.list_id = list.id WHERE tasks.id = :id');
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        $statement->execute();
+
+        $lists = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $lists[0]['title'];
+    }
+}
