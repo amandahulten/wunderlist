@@ -13,6 +13,8 @@ require __DIR__ . '/views/header.php';
             <h2>Welcome to stress less! </h2>
             <p>This is your website for a more structured life. Start by: <br> <button class="btn"><a href="/login.php">Login</a></button> or <button class="btn"><a href="/register.php">Register</a></button></p>
         </div>
+        <img class="stress-less-img" src="/uploads/stress-less.jpeg" alt="diced with the text: stress less">
+
     <?php endif; ?>
     <?php if (isUserLoggedIn()) : ?>
         <h1><?= 'Welcome ' . ($_SESSION['user']['username']) . '!'; ?></h1>
@@ -53,6 +55,7 @@ require __DIR__ . '/views/header.php';
 
             <?php if (getAllLists($database)) : ?>
                 <h1>Lists</h1>
+                <p class="list-clearification">Click on your list-title to view list</p>
             <?php endif; ?>
 
             <?php foreach (getAllLists($database) as $list) : ?>
@@ -80,13 +83,14 @@ require __DIR__ . '/views/header.php';
 
                 <div class="todays-tasks-loop">
                     <?php if (!getTodaysTasks($database)) : ?>
-                        <h3 class="btn-message">No tasks to complete today!</h3>
+                        <h3 class="btn-message">No tasks to complete today! </h3>
                     <?php else : ?>
                         <?php foreach (getTodaysTasks($database) as $todayTask) : ?>
                             <div class="todays-tasks">
                                 <h2 class="task-title"><?= htmlspecialchars($todayTask['title']); ?></h2>
                                 <p><?= htmlspecialchars($todayTask['description']); ?></p>
                                 <h3 class="task-deadline">Deadline: <?= $todayTask['completed_by']; ?></h3>
+
                             </div>
                         <?php endforeach; ?>
                     <?php endif; ?>
@@ -105,8 +109,7 @@ require __DIR__ . '/views/header.php';
                                 <h2 class="task-title"><?= htmlspecialchars($task['title']); ?></h2>
                                 <p><?= htmlspecialchars($task['description']); ?></p>
                                 <h3 class="task-deadline">Deadline: <?= $task['completed_by']; ?></h3>
-
-                                <h3>In list: <?= $task['list_id'] ?> </h3>
+                                <h3>In list: <?= $task['list_title'] ?> </h3>
 
                             </div>
                         <?php endforeach; ?>

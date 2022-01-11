@@ -24,7 +24,7 @@ if (isset($_POST['email'], $_POST['password'])) {
 
 
     if (!$user) {
-        $_SESSION['errors'][] = "This email does not belong to any account.";
+        $_SESSION['errors'][] = "This email does not belong to any account, please try again!";
         redirect('/login.php');
     }
 

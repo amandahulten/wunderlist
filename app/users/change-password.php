@@ -12,7 +12,7 @@ if (isset($_POST['current-password'], $_POST['new-password'])) {
 
     // Checks if new password is equal to new password
     if ($currentPassword === $newPassword) {
-        echo "You typed in the same password in both fields";
+        echo "You typed the same password in both fields";
         redirect('/profile.php');
     }
 

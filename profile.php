@@ -44,13 +44,14 @@
         <hr style="width: 100%;">
 
         <div class="form-upload-container">
-            <h2>Upload profile picture</h2>
+            <h2>Upload/Change profile picture</h2>
             <form class="profile-form" action="/app/users/create-avatar.php" method="post" enctype="multipart/form-data">
                 <div class="profile-upload">
                     <label for="avatar">Add profile picture:</label>
                     <input type="file" name="avatar" id="avatar" accept=".jpeg, .png" required>
+                    <small>Accepted filetypes: jpeg and png.</small>
                 </div>
-                <button class="btn upload">Upload</button>
+                <button class="btn btn-profile">Upload</button>
             </form>
         </div>
         <hr>
@@ -62,7 +63,7 @@
                 <label for="new-email">New email:</label>
                 <input type="email" name="new-email" id="new-email">
 
-                <button class="btn profile">Submit</button>
+                <button class="btn btn-profile">Submit</button>
             </form>
         </div>
         <hr>
@@ -76,7 +77,7 @@
                 <label for="new-password">New password:</label>
                 <input type="password" name="new-password" id="new-password">
 
-                <button class="btn profile">Submit</button>
+                <button class="btn btn-profile">Submit</button>
             </form>
         </div>
     </section>

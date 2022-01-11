@@ -42,20 +42,21 @@
   display: block;
 }
 
-.completed-tasks-container,
+.completed-tasks-button,
 .todays-task-container,
 .all-tasks-container,
-.change-email-container,
-.add-task-container {
+.add-task-container,
+.btn.list {
   display: flex;
   justify-content: center;
   flex-direction: column;
+  align-items: center;
 }
 
 .delete-btn,
 .edit-btn,
 .done-btn {
-  background-color: var(--task-color);
+  background-color: var(--primary-color);
   border: none;
 }
 .list-ul a {
@@ -68,6 +69,10 @@
 
 .add-task-query.active {
   display: block;
+}
+
+.list-clearification {
+  text-align: center;
 }
 /* Change task/list */
 

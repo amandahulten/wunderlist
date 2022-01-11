@@ -30,8 +30,8 @@
 :root {
   /* Colors */
   --primary-color: #dee0e0;
-  --secondary-color: #dee0e0;
   --white: #fff;
+  --black: #000;
 
   /* Font sizes */
   --title: 48px;
@@ -145,7 +145,7 @@ textarea {
   margin: 12px 0;
   font-family: 'Nunito regular';
   border-radius: 2px;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   text-align: center;
 }
 
@@ -158,6 +158,11 @@ textarea {
 
 .outlogged {
   text-align: center;
+}
+
+.stress-less-img {
+  border-radius: 10px;
+  margin-top: 20px;
 }
 
 /* Homepage */
@@ -187,8 +192,9 @@ textarea {
 
 .todays-tasks,
 .all-tasks,
-.completed-tasks {
-  margin: 16px 0 16px 0;
+.completed-tasks,
+.task-container {
+  margin: 16px 0;
 }
 
 .view-tasks-buttons {
@@ -200,7 +206,7 @@ textarea {
   gap: 16px;
   align-items: center;
   justify-content: space-around;
-  border-top: 1px solid black;
+  border-top: 1px solid var(--black);
   width: 100%;
   padding-top: 10px;
 }
@@ -242,7 +248,7 @@ footer {
   .homepage,
   .change-task-container,
   .list {
-    margin: 20px 25% 0 25%;
+    margin: 20px 25% 10px 25%;
   }
 
   input[type='date'] {
@@ -251,5 +257,28 @@ footer {
   }
   input[type='password'] {
     margin-top: 3px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .btn {
+    width: 50%;
+  }
+
+  .task-container {
+    width: 45%;
+    height: 150px;
+  }
+
+  .task-wrapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .btn-profile {
+    width: 20%;
   }
 }

@@ -17,5 +17,7 @@ if (isset($_POST['task-id'], $_POST['list-id'])) {
     $statement->bindParam(':completed_at', $unCompleted, PDO::PARAM_STR);
     $statement->execute();
 
+    $_SESSION['completed'][] = "Task moved to uncompleted tasks!";
+
     redirect('/individual-list.php?id=' . $listId);
 }

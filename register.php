@@ -18,7 +18,7 @@
 
         <div>
             <label for="username">Username</label>
-            <input class="form-control" type="text" name="username" id="username" required>
+            <input class="form-control" type="text" name="username" id="username" placeholder="Choose something fun!" required>
         </div>
 
         <div>

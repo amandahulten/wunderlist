@@ -8,12 +8,10 @@
 nav {
   display: flex;
   width: 100%;
-  /* background-color: var(--secondary-color); */
   align-items: center;
   justify-content: space-between;
   height: 70px;
-  border-bottom: 1px solid black;
-  z-index: 1;
+  border-bottom: 1px solid var(--black);
 }
 
 .navbar-nav {
@@ -27,7 +25,7 @@ nav {
   display: flex;
   align-items: center;
   gap: 24px;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   transition: 0.7s;
   box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
   list-style-type: none;
@@ -37,7 +35,7 @@ nav {
   display: block;
   width: 30px;
   height: 2px;
-  margin: 7px auto;
+  margin: 6px auto;
   background-color: black;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
@@ -73,7 +71,7 @@ nav {
 
 nav ul li a {
   text-decoration: none;
-  color: black;
+  color: var(--black);
   font-family: 'Nunito regular';
   font-size: var(--h1);
 }
@@ -83,7 +81,7 @@ nav ul li a {
 }
 
 .logout {
-  border: 2px solid black;
+  border: 2px solid var(--black);
   border-radius: 5px;
   padding: 6px;
 }
@@ -98,7 +96,7 @@ nav ul li a {
 .edit,
 .delete {
   border: none;
-  background-color: white;
+  background-color: var(--white);
 }
 
 .edit {
@@ -112,24 +110,6 @@ nav ul li a {
 }
 
 @media screen and (min-width: 1024px) {
-  /* .hamburger {
-    display: none;
-  }
-
-  .navbar-nav {
-    position: relative;
-    right: 0;
-    top: 0;
-    height: 70px;
-    width: 100%;
-    text-align: center;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: flex-end;
-    list-style-type: none;
-    background-color: white;
-  } */
   .navbar-nav.active {
     width: 50%;
   }

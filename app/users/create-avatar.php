@@ -14,7 +14,7 @@ if (isset($_FILES['avatar'])) {
     move_uploaded_file($avatar['tmp_name'], $desination);
 
     if (!in_array($avatar['type'], ['image/jpeg', 'image/png'])) {
-        $_SESSION['errors'][] = "The uploaded file type is not allowed.";
+        $_SESSION['errors'][] = "The uploaded file type is not allowed. Only jpeg and png";
         redirect('/profile.php');
     }
 
