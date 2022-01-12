@@ -8,16 +8,17 @@ if (isset($_FILES['avatar'])) {
     $avatar = $_FILES['avatar'];
     $avatarName = date('ymd') . '-' . ($avatar['name']);
 
-
     $uploadPath = __DIR__ . '/../../uploads/';
     $desination = $uploadPath . $avatarName;
     move_uploaded_file($avatar['tmp_name'], $desination);
 
+    // Check if file type is allowed
     if (!in_array($avatar['type'], ['image/jpeg', 'image/png'])) {
         $_SESSION['errors'][] = "The uploaded file type is not allowed. Only jpeg and png";
         redirect('/profile.php');
     }
 
+    // Check if file size is under 20000000
     if ($avatar['size'] >= 20000000) {
         $_SESSION['errors'][] = "Your file is to big. Try a smaller file.";
         redirect('/profile.php');

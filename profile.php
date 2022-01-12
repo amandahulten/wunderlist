@@ -49,6 +49,7 @@
                 <div class="profile-upload">
                     <label for="avatar">Add profile picture:</label>
                     <input type="file" name="avatar" id="avatar" accept=".jpeg, .png" required>
+                    <br>
                     <small>Accepted filetypes: jpeg and png.</small>
                 </div>
                 <button class="btn btn-profile">Upload</button>

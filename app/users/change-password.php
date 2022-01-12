@@ -22,6 +22,12 @@ if (isset($_POST['current-password'], $_POST['new-password'])) {
         redirect('/profile.php');
     }
 
+    //Checks that password is more than 16 characters
+    if (strlen($_POST['new-password']) < 16) {
+        $_SESSION['errors'][] = "Your new password must contain 16 or more characters.";
+        redirect('/profile.php');
+    }
+
     $query = "SELECT password FROM users WHERE id = :id";
     $statement = $database->prepare($query);
     $statement->bindParam(':id', $id, PDO::PARAM_STR);
@@ -29,8 +35,9 @@ if (isset($_POST['current-password'], $_POST['new-password'])) {
 
     $password = $statement->fetch(PDO::FETCH_ASSOC);
 
+    // Checks that the current password matches database-password
     if (!password_verify($currentPassword, $password['password'])) {
-        $_SESSION['errors'][] = "Wrong password, please try again";
+        $_SESSION['errors'][] = "Your current password is not correct, please try again";
         redirect('/profile.php');
     }
 
@@ -41,7 +48,7 @@ if (isset($_POST['current-password'], $_POST['new-password'])) {
     $statement->execute();
 
     $_SESSION['completed'][] = "Password updated!";
-    redirect('/');
+    redirect('/profile.php');
 }
 
 

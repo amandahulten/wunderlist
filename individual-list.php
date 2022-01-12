@@ -6,6 +6,7 @@
 
     <article class="list">
 
+        <!-- -----COMPLETE MESSAGES----- -->
         <?php if (isset($_SESSION['completed'])) : ?>
             <?php foreach ($_SESSION['completed'] as $completed) : ?>
                 <div class="message">
@@ -15,6 +16,7 @@
             <?php unset($_SESSION['completed']) ?>
         <?php endif; ?>
 
+        <!-- -----VIEW LIST NAME----- -->
         <div class="list-title-flex">
             <?php foreach (getAllLists($database) as $list) : ?>
                 <div class="back-img">
@@ -33,6 +35,7 @@
 
         <div class="add-task-container">
 
+            <!-- -----ERROR MESSAGES----- -->
             <?php if (isset($_SESSION['errors'])) : ?>
                 <?php foreach ($_SESSION['errors'] as $error) : ?>
                     <div class="error">
@@ -42,15 +45,7 @@
                 <?php unset($_SESSION['errors']) ?>
             <?php endif; ?>
 
-            <?php if (isset($_SESSION['completed'])) : ?>
-                <?php foreach ($_SESSION['completed'] as $completed) : ?>
-                    <div class="message">
-                        <?= $completed; ?>
-                    </div>
-                <?php endforeach; ?>
-                <?php unset($_SESSION['completed']) ?>
-            <?php endif; ?>
-
+            <!-- -----ADD TASK----- -->
             <button class="btn add">Add new task</button>
             <div class="add-task-query">
                 <form action="/app/tasks/create.php?id=<?= $id; ?>" method="post">
@@ -69,6 +64,8 @@
                 </form>
             </div>
         </div>
+
+        <!-- -----VIEW TASKS----- -->
         <div class="task-wrapper">
             <?php foreach (getUncompletedTasks($database) as $task) : ?>
                 <?php if ($task['list_id'] == $id) : ?>
@@ -98,6 +95,7 @@
         </div>
         <hr style="width: 100%;">
 
+        <!-- -----VIEW COMPLETED TASKS----- -->
         <div class="completed-tasks-button">
 
             <button class="btn completed">View completed tasks</button>
@@ -132,6 +130,7 @@
             <?php endif; ?>
         </div>
 
+        <!-- -----CLEARIFY PURPOSE OF BUTTONS----- -->
         <div class="specification">
             <div class="specification-items">
                 <img class="edit-png" src="/uploads/edit.png" alt="Edit button">

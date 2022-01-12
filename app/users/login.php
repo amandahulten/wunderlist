@@ -9,11 +9,11 @@ if (isset($_POST['email'], $_POST['password'])) {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
 
+    // Check if fields are empty
     if (empty($email) || empty($password)) {
         $_SESSION['errors'][] = "You need to fill in all fields";
         redirect('/login.php');
     }
-
 
     $statement = $database->prepare('SELECT * FROM users WHERE email = :email');
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
@@ -22,12 +22,13 @@ if (isset($_POST['email'], $_POST['password'])) {
 
     $user = $statement->fetch(PDO::FETCH_ASSOC);
 
-
+    // Check if email exists in database
     if (!$user) {
         $_SESSION['errors'][] = "This email does not belong to any account, please try again!";
         redirect('/login.php');
     }
 
+    // Start session
     if (isset($user['password']) && password_verify($password, $user['password'])) {
         $_SESSION['user'] = [
             'email' => $user['email'],

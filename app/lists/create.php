@@ -8,6 +8,7 @@ if (isset($_POST['list-name'])) {
     $listName = trim(filter_var($_POST['list-name']));
     $userId = $_SESSION['user']['id'];
 
+    // Check if field is empty
     if (empty($listName)) {
         $_SESSION['errors'][] = "The field can not be empty";
         redirect('/');

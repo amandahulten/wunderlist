@@ -50,8 +50,8 @@ nav {
 .hamburger {
   display: block;
   cursor: pointer;
-  z-index: 1;
   margin-right: 30px;
+  z-index: 1;
 }
 
 .hamburger.active .bar:nth-child(2) {
@@ -91,6 +91,7 @@ nav ul li a {
 .done-png {
   width: 20px;
   height: 20px;
+  cursor: pointer;
 }
 
 .edit,

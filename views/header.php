@@ -7,10 +7,10 @@
 
     <title><?php echo $config['title']; ?></title>
 
-    <link rel="stylesheet" href="assets/styles/base.css">
-    <link rel="stylesheet" href="assets/styles/nav.css">
-    <link rel="stylesheet" href="assets/styles/profile.css">
-    <link rel="stylesheet" href="assets/styles/lists.css">
+    <link rel="stylesheet" href="/assets/styles/base.css">
+    <link rel="stylesheet" href="/assets/styles/nav.css">
+    <link rel="stylesheet" href="/assets/styles/profile.css">
+    <link rel="stylesheet" href="/assets/styles/lists.css">
 </head>
 
 <body>

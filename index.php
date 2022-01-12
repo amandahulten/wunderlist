@@ -11,37 +11,38 @@ require __DIR__ . '/views/header.php';
     <?php if (!isUserLoggedIn()) : ?>
         <div class="outlogged">
             <h2>Welcome to stress less! </h2>
-            <p>This is your website for a more structured life. Start by: <br> <button class="btn"><a href="login.php">Login</a></button> or <button class="btn"><a href="register.php">Register</a></button></p>
+            <p>This is your website for a more structured life. Start by: <br> <button class="btn"><a href="/login.php">Login</a></button> or <button class="btn"><a href="/register.php">Register</a></button></p>
         </div>
         <img class="stress-less-img" src="/uploads/stress-less.jpeg" alt="diced with the text: stress less">
-
     <?php endif; ?>
+
     <?php if (isUserLoggedIn()) : ?>
         <h1><?= 'Welcome ' . ($_SESSION['user']['username']) . '!'; ?></h1>
 
         <h2>Start your stress-free and organized life by creating a list below.</h2>
         <div class="list-flex">
 
+            <!-- -----ERROR AND COMPLETE MESSAGES----- -->
+            <?php if (isset($_SESSION['errors'])) : ?>
+                <?php foreach ($_SESSION['errors'] as $error) : ?>
+                    <div class="error">
+                        <?= $error; ?>
+                    </div>
+                <?php endforeach; ?>
+                <?php unset($_SESSION['errors']) ?>
+            <?php endif; ?>
+
+            <?php if (isset($_SESSION['completed'])) : ?>
+                <?php foreach ($_SESSION['completed'] as $completed) : ?>
+                    <div class="message">
+                        <?= $completed; ?>
+                    </div>
+                <?php endforeach; ?>
+                <?php unset($_SESSION['completed']) ?>
+            <?php endif; ?>
+
+            <!-- -----ADD LIST----- -->
             <div class="add-list-container">
-
-                <?php if (isset($_SESSION['errors'])) : ?>
-                    <?php foreach ($_SESSION['errors'] as $error) : ?>
-                        <div class="error">
-                            <?= $error; ?>
-                        </div>
-                    <?php endforeach; ?>
-                    <?php unset($_SESSION['errors']) ?>
-                <?php endif; ?>
-
-                <?php if (isset($_SESSION['completed'])) : ?>
-                    <?php foreach ($_SESSION['completed'] as $completed) : ?>
-                        <div class="message">
-                            <?= $completed; ?>
-                        </div>
-                    <?php endforeach; ?>
-                    <?php unset($_SESSION['completed']) ?>
-                <?php endif; ?>
-
                 <button class="btn list">Add new list</button>
 
                 <div class="add-list-query">
@@ -53,6 +54,7 @@ require __DIR__ . '/views/header.php';
                 </div>
             </div>
 
+            <!-- ----VIEW ALL LISTS----- -->
             <?php if (getAllLists($database)) : ?>
                 <h1>Lists</h1>
                 <p class="list-clearification">Click on your list-title to view list</p>
@@ -61,10 +63,10 @@ require __DIR__ . '/views/header.php';
             <?php foreach (getAllLists($database) as $list) : ?>
                 <div class="list-container">
                     <ul class="list-ul">
-                        <li> <a href="individual-list.php?id=<?= $list['id']; ?>"><?= htmlspecialchars($list['title']); ?></a></li>
+                        <li> <a href="/individual-list.php?id=<?= $list['id']; ?>"><?= htmlspecialchars($list['title']); ?></a></li>
 
                         <div class="list-task-buttons">
-                            <button class="edit"><a href="change-list.php?id=<?= $list['id'] ?>"><img class="edit-png" src="/uploads/edit.png" alt="Edit button"></a></button>
+                            <button class="edit"><a href="/change-list.php?id=<?= $list['id'] ?>"><img class="edit-png" src="/uploads/edit.png" alt="Edit button"></a></button>
 
                             <form action="/app/lists/delete.php" method="post">
                                 <input type="hidden" name="list-id" id="list-id" value="<?= $list['id']; ?>">
@@ -76,14 +78,14 @@ require __DIR__ . '/views/header.php';
             <?php endforeach; ?>
         </div>
 
+        <!-- -----VIEW TODAYS TASKS----- -->
         <div class="view-tasks-buttons">
-
             <div class="todays-task-container">
                 <button class="btn today">View tasks to complete today</button>
 
                 <div class="todays-tasks-loop">
                     <?php if (!getTodaysTasks($database)) : ?>
-                        <h3 class="btn-message">No tasks to complete today! </h3>
+                        <h3 class="btn-message">No tasks to complete today. Wihoo! </h3>
                     <?php else : ?>
                         <?php foreach (getTodaysTasks($database) as $todayTask) : ?>
                             <div class="todays-tasks">
@@ -97,12 +99,13 @@ require __DIR__ . '/views/header.php';
                 </div>
             </div>
 
+            <!-- -----VIEW ALL TASKS----- -->
             <div class="all-tasks-container">
                 <button class="btn task">View all tasks</button>
 
                 <div class="all-tasks-loop">
                     <?php if (!getUncompletedTasks($database)) : ?>
-                        <h3 class="btn-message">You don't have any tasks!</h3>
+                        <h3 class="btn-message">No tasks created yet.</h3>
                     <?php else : ?>
                         <?php foreach (getUncompletedTasks($database) as $task) : ?>
                             <div class="all-tasks">

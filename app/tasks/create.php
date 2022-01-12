@@ -14,6 +14,7 @@ if (isset($_POST['title'], $_POST['deadline'])) {
     $userId = $_SESSION['user']['id'];
     $createdAt = date('Y-m-d');
 
+    // Check if any field is empty
     if (empty($title) || empty($deadline)) {
         $_SESSION['errors'][] = "You need to fill in both title and deadline";
         redirect('/individual-list.php?id=' . $listId);

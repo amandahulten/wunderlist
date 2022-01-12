@@ -11,6 +11,7 @@ $userId = $_SESSION['user']['id'];
 if (isset($_POST['new-title'])) {
     $newTitle = trim(filter_var($_POST['new-title']));
 
+    // Check if field is empty
     if (empty($newTitle)) {
         $_SESSION['errors'][] = "You need to fill in a new title";
         redirect('/');
