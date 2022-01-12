@@ -24,10 +24,12 @@ This is an individual school assignment focusing on php-programming. We were sup
 - As a user I'm able to view all tasks within a list.
 - As a user I'm able to view all tasks which should be completed today.
     
-**Extra:** 
+**Extra:**
 - As a user I'm able to remove a task from a list.
 
 </details>
+
+Visit my website here: https://amandasportal.se/
 
 # Installation
 
@@ -58,5 +60,5 @@ Code review written by [Jane Doh](https://github.com/username).
 
 Tested by the following people:
 
-1. Jane Doe
-2. John Doe
+1. Sofia Dersén
+2. Sofia Rönnkvist
