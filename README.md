@@ -33,11 +33,11 @@ This is an individual school assignment focusing on php-programming. We were sup
 
 To install this project follow the steps below: 
 
-- Clone the project ``` https://github.com/amandahulten/wunderlist.git ```
+- Clone the project -> ``` https://github.com/amandahulten/wunderlist.git ```
 
-- Start php server ```php -S localhost:8000```
+- Start php server -> ```php -S localhost:8000```
 
-- Open your browser and paste this link: ```http://localhost:8000/```
+- Open your browser and paste this link -> ```http://localhost:8000/```
 
 # Code Review
 
