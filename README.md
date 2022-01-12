@@ -1,4 +1,4 @@
-<img src="https://media.giphy.com/media/FsdpXYZ9Bp56P1bAp6/giphy.gif" width="100%">
+<img src="https://media.giphy.com/media/FsdpXYZ9Bp56P1bAp6/giphy.gif">
 
 # Stress Less
 
@@ -24,7 +24,7 @@ This is an individual school assignment focusing on php-programming. We were sup
 - As a user I'm able to view all tasks within a list.
 - As a user I'm able to view all tasks which should be completed today.
     
-- **Extra:** 
+**Extra:** 
 - As a user I'm able to remove a task from a list.
 
 </details>
