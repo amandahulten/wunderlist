@@ -15,7 +15,7 @@
             <input type="text" name="new-title" id="new-title">
 
             <button class="btn">Change</button>
-            <button class="btn"><a href="/index.php">Cancel</a></button>
+            <button class="btn"><a href="index.php">Cancel</a></button>
         </form>
     </div>
 <?php endif; ?>

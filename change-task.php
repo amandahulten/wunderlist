@@ -27,7 +27,7 @@
             <input type="date" name="new-deadline" id="new-deadline">
 
             <button class="btn">Change</button>
-            <button class="btn"><a href="/individual-list.php?id=<?= $listId ?>">Cancel</a></button>
+            <button class="btn"><a href="individual-list.php?id=<?= $listId ?>">Cancel</a></button>
         </form>
     </div>
 <?php endif; ?>

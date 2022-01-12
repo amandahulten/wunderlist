@@ -11,7 +11,7 @@ require __DIR__ . '/views/header.php';
     <?php if (!isUserLoggedIn()) : ?>
         <div class="outlogged">
             <h2>Welcome to stress less! </h2>
-            <p>This is your website for a more structured life. Start by: <br> <button class="btn"><a href="/login.php">Login</a></button> or <button class="btn"><a href="/register.php">Register</a></button></p>
+            <p>This is your website for a more structured life. Start by: <br> <button class="btn"><a href="login.php">Login</a></button> or <button class="btn"><a href="register.php">Register</a></button></p>
         </div>
         <img class="stress-less-img" src="/uploads/stress-less.jpeg" alt="diced with the text: stress less">
 
@@ -61,10 +61,10 @@ require __DIR__ . '/views/header.php';
             <?php foreach (getAllLists($database) as $list) : ?>
                 <div class="list-container">
                     <ul class="list-ul">
-                        <li> <a href="/individual-list.php?id=<?= $list['id']; ?>"><?= htmlspecialchars($list['title']); ?></a></li>
+                        <li> <a href="individual-list.php?id=<?= $list['id']; ?>"><?= htmlspecialchars($list['title']); ?></a></li>
 
                         <div class="list-task-buttons">
-                            <button class="edit"><a href="/change-list.php?id=<?= $list['id'] ?>"><img class="edit-png" src="/uploads/edit.png" alt="Edit button"></a></button>
+                            <button class="edit"><a href="change-list.php?id=<?= $list['id'] ?>"><img class="edit-png" src="/uploads/edit.png" alt="Edit button"></a></button>
 
                             <form action="/app/lists/delete.php" method="post">
                                 <input type="hidden" name="list-id" id="list-id" value="<?= $list['id']; ?>">
