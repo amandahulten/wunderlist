@@ -147,6 +147,7 @@ textarea {
   border-radius: 2px;
   background-color: var(--primary-color);
   text-align: center;
+  color: var(--black);
 }
 
 .btn:hover {
