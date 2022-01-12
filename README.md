@@ -61,4 +61,4 @@ Code review written by [Jane Doh](https://github.com/username).
 Tested by the following people:
 
 1. Sofia Dersén
-2. 
+2. Sofia Rönnkvist
