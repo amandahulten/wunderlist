@@ -1,4 +1,4 @@
-<img src="https://media.giphy.com/media/jS27LWasgUIYrXtP83/giphy-downsized.gif" width: "100%">
+<img src="https://media.giphy.com/media/jS27LWasgUIYrXtP83/giphy-downsized.gif" >
 
 # Stress Less
 
