@@ -60,5 +60,5 @@ Code review written by [Jane Doh](https://github.com/username).
 
 Tested by the following people:
 
-1. Jane Doe
-2. John Doe
+1. Sofia Dersén
+2. 
