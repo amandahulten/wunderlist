@@ -2,7 +2,7 @@
 
 # Stress Less
 
-This is an individual school assignment focusing on php-programming. We were supposed to create a to-do application with following user stories:
+This is an individual school assignment focusing on php-programming. We were supposed to create a To-Do application with following user stories:
 
 <details><summary><b> User stories:</b></summary>
 
