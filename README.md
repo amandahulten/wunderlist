@@ -29,8 +29,6 @@ This is an individual school assignment focusing on php-programming. We were sup
 
 </details>
 
-Visit my website here: https://amandasportal.se/
-
 # Installation
 
 To install this project follow the steps below: 
