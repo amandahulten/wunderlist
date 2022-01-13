@@ -43,16 +43,16 @@ To install this project follow the steps below:
 
 Code review written by [Jane Doh](https://github.com/username).
 
-1. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-2. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-3. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-4. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-5. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-6. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-7. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-8. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-9. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
-10. `example.js:10-15` - Remember to think about X and this could be refactored using the amazing Y function.
+1. `index.php:14` - To make the whole button clickable make sure `<button>` is inside of `<a>` tag
+2. `app/users/register.php:8-74` - I'd recommend setting some username requirements, such as only letters and numbers allowed.
+3. `app/users/register.php:25-29` - Users can for example create password with only lowercase letters. Maybe add password requirements so that users have to enter atleast one uppercase letter and a number when creating a password.
+4. `register.php:17-38` - Since password recovery is not available, I'd suggest adding another input field to confirm the password user has entered.
+5. `app/users/create-avatar:21-22` - When uploading a new profile picture, it seems like users can upload a max file size of 20MB istead of 2MB.
+6. `index.php:51` - Not sure if I understand why list name has a character limit of 8.
+7. `index.php:81-100` - When viewing tasks to complete today, is it possible to link it to the specific task?
+8. `general` - To easily return to homepage, I'd recommend making the logo a link that directs user to index. That's also 1 click less than taking the menu route.
+9. `general` - Great use of comments throughout all your files, makes it easy to read and understand your code. Keep it up! ⭐️
+10. `general` - Good job splitting your code up and moving them into subfolders. Tiny detail: I think the naming could be more unique, for example I would rename `create.php` to `create-task.php`. Incase files accidentally get rearranged in the future, you should know which file is which.
 
 # Testers
 
