@@ -41,7 +41,7 @@ To install this project follow the steps below:
 
 # Code Review
 
-Code review written by [Jane Doh](https://github.com/username).
+Code review written by [Marcus Hägerstrand](https://github.com/marcusxyz).
 
 1. `index.php:14` - To make the whole button clickable make sure `<button>` is inside of `<a>` tag
 2. `app/users/register.php:8-74` - I'd recommend setting some username requirements, such as only letters and numbers allowed.
