@@ -81,6 +81,22 @@
                 <button class="btn btn-profile">Submit</button>
             </form>
         </div>
+        <hr>
+        <div class="delete-user-container">
+            <h2>Delete user</h2>
+            <p>This action will delete your profile and all of your lists and task. This can not be undone</p>
+            <form action="/app/users/delete-user.php" method="post">
+                <input type="hidden" name="id" value="<?php echo $user['id'] ?>">
+
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" placeholder="email" required>
+
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" required>
+
+                <button class="btn btn-profile">Delete</button>
+            </form>
+        </div>
     </section>
 <?php endif; ?>
 
