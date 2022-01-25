@@ -5,9 +5,7 @@ declare(strict_types=1);
 require __DIR__ . '/../autoload.php';
 
 if (isset($_POST['id'], $_POST['email'])) {
-
     $email = trim(filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
-
 
     $query = 'SELECT * FROM users WHERE email = :email';
 
