@@ -29,6 +29,12 @@ This is an individual school assignment focusing on php-programming. We were sup
 
 </details>
 
+Extra features added:
+- As I user I'm able to delete my account.
+- As a user I'm able to mark all tasks in a list as completed with one click.
+
+Link to pull-request: https://github.com/amandahulten/wunderlist/pull/2
+
 # Installation
 
 To install this project follow the steps below: 
