@@ -93,6 +93,18 @@
                 <?php endif; ?>
             <?php endforeach; ?>
         </div>
+        <!--- FORM TO COMPLETE ALL TASKS --->
+
+
+        <form action="/app/tasks/complete-all-tasks.php" method="post">
+            <input type="hidden" name="list-id" id="list-id" value="<?= $list['id']; ?>">
+            <h3>complete all tasks</h3>
+            <div class="specification-items">
+                <button type="submit" class="done-btn"><img class="done-png" src="/uploads/done.png" alt="Done png"></button>
+            </div>
+        </form>
+
+
         <hr style="width: 100%;">
 
         <!-- -----VIEW COMPLETED TASKS----- -->
